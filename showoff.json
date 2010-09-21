@@ -1,0 +1,25 @@
+{ "name": "Git Complete", 
+	"sections": 
+	[ 
+		{"section":"intro"},
+		{"section":"what_is_git"},
+		{"section":"first_steps"},
+		{"section":"git_init"},
+		{"section":"git_clone"},
+		{"section":"a_basic_workflow"},
+		{"section":"git_branch"},
+		{"section":"git_checkout"},
+		{"section":"git_remote"},
+		{"section":"git_log"},
+		{"section":"git_fetch"},
+		{"section":"git_merge"},
+		{"section":"git_rebase"},
+		{"section":"git_tag"},
+		{"section":"git_push"},
+		{"section":"review"},
+		{"section":"git_branch_deep_dive"},
+		{"section":"git_remote_deep_dive"},
+		{"section":"git_workflows"},
+		{"section":"resources"}
+	]
+}
