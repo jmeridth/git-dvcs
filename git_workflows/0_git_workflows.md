@@ -13,7 +13,7 @@
 
 !SLIDE center
 ![GitWorkflows3](GitWorkflows3.png)
-### dictator & lietenant ###
+### dictator & lieutenant ###
 
 !SLIDE center
 <img src="GitModel.png" width="375" height="500"/>
