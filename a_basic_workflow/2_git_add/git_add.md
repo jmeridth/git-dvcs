@@ -18,7 +18,7 @@
 !SLIDE
 
 <pre>
-$ git add main.py
+$ git add main.rb
 $ git status
 # On branch master
 # Changes to be committed:
@@ -219,7 +219,7 @@ $ git status
 !SLIDE small
 
 <pre>
-$ git add app.yaml main.py
+$ git add app.yaml main.rb
 $ git status
 # On branch master
 # Changes to be committed:
