@@ -26,6 +26,16 @@
 ## <span class="grey">Review your changes</span> ##
 ## <span class="grey">Commit the changes</span> ##
 
+!SLIDE CODE
+## We have the following code in a file called main.rb that is already in a git repository ##
+<br/>
+	@@@ruby
+	#! /usr/bin/env ruby
+
+	puts 'hello world'
+<br/>	
+## and we add a comment ##
+
 !SLIDE code
 	
 	@@@ruby

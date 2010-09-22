@@ -117,6 +117,9 @@ $ git status
 
 	puts 'hello world'
 	
+!SLIDE
+## we change the comment to use 'Hola Mundo' instead of 'Hello World'##
+
 !SLIDE code
 	
 	@@@ruby
