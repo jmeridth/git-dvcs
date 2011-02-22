@@ -11,8 +11,10 @@
 	$ vim file.rb
 	$ rake spec
 	$ git commit -am "meh, blah, blah"
-	$ git pull --rebase origin master
 	
+	$ git checkout master
+	$ git pull origin master
+	$ git checkout T22
 	$ git rebase -i master
 	$ ### choose squash action
 	$ ### edit commit messages to single message

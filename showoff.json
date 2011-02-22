@@ -5,6 +5,7 @@
 		{"section":"what_is_git"},
 		{"section":"first_steps"},
 		{"section":"git_init"},
+		{"section":"autocrlf"},
 		{"section":"git_clone"},
 		{"section":"a_basic_workflow"},
 		{"section":"git_branch"},
@@ -20,6 +21,7 @@
 		{"section":"git_branch_deep_dive"},
 		{"section":"git_remote_deep_dive"},
 		{"section":"git_workflows"},
+		{"section":"cleanup_rollback"},
 		{"section":"resources"}
 	]
 }
