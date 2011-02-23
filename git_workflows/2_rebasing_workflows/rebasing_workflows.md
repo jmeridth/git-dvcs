@@ -19,39 +19,10 @@
 ![RebasingWorkflows3](RebasingWorkflows3.png)
 
 !SLIDE center
-![RebasingWorkflows4](RebasingWorkflows4.png)
-
-!SLIDE commandline center
-
-	$ git rebase --onto master server client
-<br/><br/>
-![RebasingWorkflows5](RebasingWorkflows5.png)
-
-!SLIDE commandline center
-	$ git checkout master
-	$ git merge client
-<br/><br/>
-![RebasingWorkflows6](RebasingWorkflows6.png)
-
-!SLIDE commandline center
-	$ git rebase master server
-<br/><br/>
-![RebasingWorkflows7](RebasingWorkflows7.png)
-<br/><br/>
-	$ git checkout master
-	$ git merge server
-	
-!SLIDE commandline center
-	$ git branch -d client
-	$ git branch -d server
-<br/><br/>
-![RebasingWorkflows8](RebasingWorkflows8.png)
-
-!SLIDE center
 <img src="InteractiveRebase.png" width="1024" height="768"/>
 
 !SLIDE center
-## you've committed everything on your topic branch, multiple commits ##
+## you have committed everything on your topic branch, multiple commits ##
 
 !SLIDE commandline incremental
 
@@ -73,8 +44,10 @@
 	#
 	# Commands:
 	# p, pick = use commit
+	# r, reword = use commit, but edit the commit message
 	# e, edit = use commit, but stop for amending
 	# s, squash = use commit, but meld into previous commit
+	# f, fixup = use "squash", but discard this commit's log message
 	#
 	# If you remove a line here THAT COMMIT WILL BE LOST.
 	# However, if you remove everything, the rebase will be aborted.
@@ -118,24 +91,6 @@
 	# This is a combination of 5 commits.
 	# The first commit's message is:
 	the best darn tootin commit message ever
-	
-!SLIDE small
-
-	pick fc62e55 added file_size
-	pick 9824bf4 fixed little thing
-	edit 21d80a5 added number to log
-	pick 76b9da6 added the apply command
-	pick c264051 Revert "added file_size" - not implemented correctly
-	
-!SLIDE commandline incremental
-
-	$ git reset HEAD^
-	$ ### split file0 into file1, file2
-	$ git add file1
-	$ git commit 'first part of split commit'
-	$ git add file2
-	$ git commit 'second part of split commit'
-	$ git rebase --continue
 	
 !SLIDE center
 # Do not rebase commits that you have pushed to a public repository. #
