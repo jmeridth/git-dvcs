@@ -18,10 +18,3 @@
 
 !SLIDE center
 ![Airstrip Logo](AirstripLogo.jpg)
-<br/><br/>
-<img src="ArmmerLogo.png" width="300" height="65"/>
-
-!SLIDE center
-<img src="LosTechiesLogo.png" width="205" height="300"/>
-
-![AlamoCoders Logo](AlamoCodersLogo.png)
