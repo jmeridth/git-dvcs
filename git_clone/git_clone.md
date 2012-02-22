@@ -7,15 +7,15 @@
 	
 !SLIDE commandline incremental
 
-	$ git clone git://github.com/armmer/console_app.git
+	$ git clone git://github.com/jmeridth/console_app.git
 	
 !SLIDE commandline incremental small
 
-	$ git clone git://github.com/armmer/console_app.git superjason
+	$ git clone git://github.com/jmeridth/console_app.git superjason
 	
 !SLIDE commandline incremental small
 
-	$ git clone git://github.com/armmer/console_app.git
+	$ git clone git://github.com/jmeridth/console_app.git
 	
 	Initialized empty Git repository in /Users/jasonmeridth/console_app/.git/
 	remote: Counting objects: 79, done.
