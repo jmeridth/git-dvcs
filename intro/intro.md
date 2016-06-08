@@ -15,6 +15,3 @@
 
 !SLIDE center
 ## Jason Meridth ##
-
-!SLIDE center
-![Airstrip Logo](AirstripLogo.jpg)
