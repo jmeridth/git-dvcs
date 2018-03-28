@@ -24,6 +24,7 @@ GEM
       mini_portile2 (~> 2.3.0)
     parslet (1.8.2)
     public_suffix (3.0.2)
+    puma (3.11.3)
     rack (1.6.9)
     rack-contrib (1.8.0)
       rack (~> 1.4)
@@ -67,6 +68,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  puma
   showoff
 
 RUBY VERSION
