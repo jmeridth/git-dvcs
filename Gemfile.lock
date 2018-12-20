@@ -25,7 +25,7 @@ GEM
     parslet (1.8.2)
     public_suffix (3.0.2)
     puma (3.11.3)
-    rack (1.6.9)
+    rack (1.6.11)
     rack-contrib (1.8.0)
       rack (~> 1.4)
     rack-protection (1.5.5)
@@ -69,10 +69,11 @@ PLATFORMS
 
 DEPENDENCIES
   puma
+  rack (>= 1.6.11)
   showoff
 
 RUBY VERSION
    ruby 2.5.0p0
 
 BUNDLED WITH
-   1.16.1
+   1.17.2
