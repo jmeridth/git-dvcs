@@ -20,7 +20,7 @@ GEM
     iso-639 (0.2.8)
     json (2.1.0)
     mini_portile2 (2.3.0)
-    nokogiri (1.8.2)
+    nokogiri (1.8.5)
       mini_portile2 (~> 2.3.0)
     parslet (1.8.2)
     public_suffix (3.0.2)
@@ -68,6 +68,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  nokogiri (~> 1.8.5)
   puma
   rack (>= 1.6.11)
   showoff
