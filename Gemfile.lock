@@ -19,9 +19,9 @@ GEM
       concurrent-ruby (~> 1.0)
     iso-639 (0.2.8)
     json (2.1.0)
-    mini_portile2 (2.3.0)
-    nokogiri (1.8.5)
-      mini_portile2 (~> 2.3.0)
+    mini_portile2 (2.4.0)
+    nokogiri (1.10.4)
+      mini_portile2 (~> 2.4.0)
     parslet (1.8.2)
     public_suffix (3.0.2)
     puma (3.11.3)
@@ -77,4 +77,8 @@ RUBY VERSION
    ruby 2.5.0p0
 
 BUNDLED WITH
+<<<<<<< HEAD
    1.17.2
+=======
+   1.16.6
+>>>>>>> update nokigiri due to CVE-2019-5477
