@@ -68,17 +68,13 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  nokogiri (~> 1.8.5)
+  nokogiri
   puma
-  rack (>= 1.6.11)
+  rack
   showoff
 
 RUBY VERSION
-   ruby 2.5.0p0
+   ruby 2.7.0p0
 
 BUNDLED WITH
-<<<<<<< HEAD
-   1.17.2
-=======
-   1.16.6
->>>>>>> update nokigiri due to CVE-2019-5477
+   2.1.4
