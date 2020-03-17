@@ -24,7 +24,7 @@ GEM
       mini_portile2 (~> 2.4.0)
     parslet (1.8.2)
     public_suffix (3.0.2)
-    puma (3.11.3)
+    puma (3.12.4)
     rack (1.6.11)
     rack-contrib (1.8.0)
       rack (~> 1.4)
