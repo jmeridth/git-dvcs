@@ -25,7 +25,7 @@ GEM
     parslet (1.8.2)
     public_suffix (3.0.2)
     puma (3.12.4)
-    rack (1.6.11)
+    rack (1.6.13)
     rack-contrib (1.8.0)
       rack (~> 1.4)
     rack-protection (1.5.5)
@@ -70,7 +70,7 @@ PLATFORMS
 DEPENDENCIES
   nokogiri
   puma
-  rack
+  rack (>= 1.6.12)
   showoff
 
 RUBY VERSION
