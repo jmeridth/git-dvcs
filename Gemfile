@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
-ruby '2.7.1'
+ruby '3.0.0'
 
-gem 'showoff'
+gem 'showoff', ">= 0.20.2"
 gem 'puma'
 gem "rack", ">= 1.6.12"
-gem "nokogiri"
+gem "nokogiri", ">= 1.11.0"
