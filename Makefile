@@ -7,7 +7,7 @@ help: # Display help
 
 .PHONY : build
 build : ## generate static version of presentation
-	@showoff github
+	@showoff static
 
 .PHONY : open
 open : ## open static site in a browser (may or may not work for you)
