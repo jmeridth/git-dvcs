@@ -1,6 +1,6 @@
 [https://blog.jasonmeridth.com/git-dvcs](blog.jasonmeridth.com/git-dvcs)
 
-By [Jason Meridth] (https://blog.jasonmeridth.com)
+By [Jason Meridth](https://blog.jasonmeridth.com)
 
 Uses [ShowOff](http://github.com/puppetlabs/showoff)
 
