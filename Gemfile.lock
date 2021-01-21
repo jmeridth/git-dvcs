@@ -20,14 +20,11 @@ GEM
     iso-639 (0.3.5)
     json (2.5.1)
     mini_portile2 (2.5.0)
-    nio4r (2.5.4)
     nokogiri (1.11.1)
       mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
     parslet (2.0.0)
     public_suffix (4.0.6)
-    puma (5.1.1)
-      nio4r (~> 2.0)
     racc (1.5.2)
     rack (1.6.13)
     rack-contrib (1.8.0)
@@ -72,8 +69,6 @@ PLATFORMS
 
 DEPENDENCIES
   nokogiri (>= 1.11.0)
-  puma
-  rack (>= 1.6.12)
   showoff (>= 0.20.2)
 
 RUBY VERSION

@@ -1,9 +1,0 @@
-version: '3'
-services:
-  gitdvcs:
-    container_name: gitdvcs_1
-    build: .
-    ports:
-      - 9090:9090
-    volumes:
-      - .:/code
