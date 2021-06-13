@@ -15,21 +15,12 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.0.0
-      - uses: actions/cache@v2
-        with:
-          path: vendor/bundle
-          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-gems-
-      - name: Install dependencies
-        run: |
-          bundle config path vendor/bundle
-          bundle install --jobs 4 --retry 3
+          bundler-cache: true
+        run: bundle install
       - name: Build static site
         run: |
           git config user.email 'jmeridth@gmail.com'
           git config user.name 'jmeridth'
-          bundle config path vendor/bundle
           bundle exec showoff github
       - name: Push changes
         run: git push -f origin gh-pages
