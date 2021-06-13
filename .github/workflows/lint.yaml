@@ -1,0 +1,16 @@
+name: Deploy
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy:
+    name: deploy
+    runs-on: ubuntu-latest
+    env:
+      GIT_TERMINAL_PROMPT: 1
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v2
+      - name: Deploy
+        run: showoff github
