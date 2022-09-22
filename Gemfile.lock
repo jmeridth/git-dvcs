@@ -3,7 +3,7 @@ GEM
   specs:
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
-    commonmarker (0.23.4)
+    commonmarker (0.23.6)
     concurrent-ruby (1.1.10)
     daemons (1.4.1)
     em-websocket (0.3.8)
