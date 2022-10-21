@@ -20,7 +20,7 @@ GEM
     json (2.6.2)
     mustermann (1.1.1)
       ruby2_keywords (~> 0.0.1)
-    nokogiri (1.13.6-x86_64-linux)
+    nokogiri (1.13.9-x86_64-linux)
       racc (~> 1.4)
     parslet (2.0.0)
     public_suffix (4.0.7)
@@ -65,6 +65,7 @@ GEM
     tilt (2.0.10)
 
 PLATFORMS
+  x86_64-linux
   x86_64-linux-musl
 
 DEPENDENCIES
