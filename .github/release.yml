@@ -1,0 +1,22 @@
+changelog:
+  exclude:
+    authors:
+      - octocat
+  categories:
+    - title: Breaking Changes
+      labels:
+        - bump:major
+        - breaking-change
+      exclude:
+        labels:
+          - dependencies
+    - title: Features
+      labels:
+        - '*'
+      exclude:
+        labels:
+          - bump:major
+          - dependencies
+    - title: Dependencies
+      labels:
+        - dependencies
