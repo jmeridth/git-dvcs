@@ -1,0 +1,2856 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>Git Complete</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"/>
+
+  
+
+  <link rel="stylesheet" type="text/css" href="css/highlight/default.css"  />
+  <link rel="stylesheet" type="text/css" href="css/mermaid-6.0.0.css" />
+  <link rel="stylesheet" type="text/css" href="css/font-awesome-5.6.1/css/all.min.css">
+  <link rel="stylesheet" type="text/css" href="css/introjs-2.5.local.css">
+  <link rel="stylesheet" type="text/css" href="css/jquery-ui-1.12.1.css">
+  <link rel="stylesheet" type="text/css" href="css/showoff.css?v=0.20.3" />
+  <link rel="stylesheet" type="text/css" href="css/zoomline-0.0.1.css">
+
+  <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+  <script type="text/javascript" src="js/jquery-ui-1.12.1.js"></script>
+
+  <script type="text/javascript" src="js/jquery.cycle.all-2.8.0.js"></script>
+  <script type="text/javascript" src="js/jquery.batchImageLoad-1.0.0.js"></script>
+  <script type="text/javascript" src="js/jquery.parsequery.min-6a20f83.js"></script>
+  <script type="text/javascript" src="js/jquery.doubletap-4ff02c5.js"></script>
+  <script type="text/javascript" src="js/highlight.pack-9.15.10.js"></script>
+  <script type="text/javascript" src="js/highlightjs-line-numbers.min.js"></script>
+  <script type="text/javascript" src="js/jTypeWriter-1.1.js"></script>
+  <script type="text/javascript" src="js/bigtext-0.1.8.js"></script>
+  <script type="text/javascript" src="js/zoomline-0.0.1.js"></script>
+  <script type="text/javascript" src="js/simpleStrings-0.0.1.js"></script>
+  <script type="text/javascript" src="js/mermaid-6.0.0-min.js"></script>
+
+  <!-- waiting on https://github.com/usablica/intro.js/pull/727 -->
+  <script type="text/javascript" src="js/intro-2.5.local.js"></script>
+
+  <script type="text/javascript" src="js/coffee-script-1.1.3-pre.js"></script>
+
+  <script type="text/javascript" src="js/annotations.js?v=0.20.3"></script>
+  <script type="text/javascript" src="js/showoff.js?v=0.20.3"></script>
+
+  
+    <link rel="stylesheet" type="text/css" href="custom.css" />
+  
+
+  
+
+  <script type="text/javascript">
+    $(function(){
+      setupPreso(false);
+    });
+
+    editUrl     = "";
+    interactive = false;
+    master      = false;
+    presenter   = false;
+
+    keymap               = {
+  "d": "DEBUG",
+  "space": "NEXT",
+  "down": "NEXT",
+  "right": "NEXT",
+  "pagedown": "NEXT",
+  "up": "PREV",
+  "left": "PREV",
+  "pageup": "PREV",
+  "SPACE": "NEXTSEC",
+  "DOWN": "NEXTSEC",
+  "RIGHT": "NEXTSEC",
+  "PAGEDOWN": "NEXTSEC",
+  "UP": "PREVSEC",
+  "LEFT": "PREVSEC",
+  "PAGEUP": "PREVSEC",
+  "R": "RELOAD",
+  "r": "REFRESH",
+  "c": "CONTENTS",
+  "t": "CONTENTS",
+  "h": "HELP",
+  "/": "HELP",
+  "?": "HELP",
+  "b": "BLANK",
+  ".": "BLANK",
+  "F": "FOOTER",
+  "f": "FOLLOW",
+  "n": "NOTES",
+  "esc": "CLEAR",
+  "p": "PAUSE",
+  "P": "PRESHOW",
+  "x": "EXECUTE",
+  "f5": "EXECUTE"
+};
+    keycode_dictionary   = {
+  "0": "\\",
+  "8": "backspace",
+  "9": "tab",
+  "12": "num",
+  "13": "enter",
+  "16": "shift",
+  "17": "ctrl",
+  "18": "alt",
+  "19": "pause",
+  "20": "caps",
+  "27": "esc",
+  "32": "space",
+  "33": "pageup",
+  "34": "pagedown",
+  "35": "end",
+  "36": "home",
+  "37": "left",
+  "38": "up",
+  "39": "right",
+  "40": "down",
+  "44": "print",
+  "45": "insert",
+  "46": "delete",
+  "48": "0",
+  "49": "1",
+  "50": "2",
+  "51": "3",
+  "52": "4",
+  "53": "5",
+  "54": "6",
+  "55": "7",
+  "56": "8",
+  "57": "9",
+  "59": ";",
+  "61": "=",
+  "65": "a",
+  "66": "b",
+  "67": "c",
+  "68": "d",
+  "69": "e",
+  "70": "f",
+  "71": "g",
+  "72": "h",
+  "73": "i",
+  "74": "j",
+  "75": "k",
+  "76": "l",
+  "77": "m",
+  "78": "n",
+  "79": "o",
+  "80": "p",
+  "81": "q",
+  "82": "r",
+  "83": "s",
+  "84": "t",
+  "85": "u",
+  "86": "v",
+  "87": "w",
+  "88": "x",
+  "89": "y",
+  "90": "z",
+  "91": "cmd",
+  "92": "cmd",
+  "93": "cmd",
+  "96": "num_0",
+  "97": "num_1",
+  "98": "num_2",
+  "99": "num_3",
+  "100": "num_4",
+  "101": "num_5",
+  "102": "num_6",
+  "103": "num_7",
+  "104": "num_8",
+  "105": "num_9",
+  "106": "num_multiply",
+  "107": "num_add",
+  "108": "num_enter",
+  "109": "num_subtract",
+  "110": "num_decimal",
+  "111": "num_divide",
+  "112": "f1",
+  "113": "f2",
+  "114": "f3",
+  "115": "f4",
+  "116": "f5",
+  "117": "f6",
+  "118": "f7",
+  "119": "f8",
+  "120": "f9",
+  "121": "f10",
+  "122": "f11",
+  "123": "f12",
+  "124": "print",
+  "144": "num",
+  "145": "scroll",
+  "173": "-",
+  "186": ";",
+  "187": "=",
+  "188": ",",
+  "189": "-",
+  "190": ".",
+  "191": "/",
+  "192": "`",
+  "219": "[",
+  "220": "\\",
+  "221": "]",
+  "222": "'",
+  "223": "`",
+  "224": "cmd",
+  "225": "alt",
+  "57392": "ctrl",
+  "63289": "num"
+};
+    keycode_shifted_keys = {
+  "0": ")",
+  "1": "!",
+  "2": "@",
+  "3": "#",
+  "4": "$",
+  "5": "%",
+  "6": "^",
+  "7": "&",
+  "8": "*",
+  "9": "(",
+  "/": "?",
+  ".": ">",
+  ",": "<",
+  "'": "\"",
+  ";": ":",
+  "[": "{",
+  "]": "}",
+  "\\": "|",
+  "`": "~",
+  "=": "+",
+  "-": "_",
+  "space": "SPACE",
+  "down": "DOWN",
+  "right": "RIGHT",
+  "pagedown": "PAGEDOWN",
+  "up": "UP",
+  "left": "LEFT",
+  "pageup": "PAGEUP"
+};
+    user_translations    = {
+};
+
+    I18n = new translation({"name":"Showoff Presentation","menu":{"title":"Showoff Menu","table_of_contents":"Table of Contents","downloads":"Downloads","feedback":{"label":"Send Feedback","description":"This slide is...","worst":"Terrible","best":"Awesome","why":"Why...?","send":"Send"},"pace":{"label":"The presenter should...","slower":"Slow Down","faster":"Speed Up"},"question":{"label":"Ask a Question","placeholder":"Ask a question..."},"edit":"Edit Current Slide","clear_annotations":"Clear Annotations","language":"Content Language","close":"Close","help":"Press <code>?</code> for help.","anonymous":"All features are anonymous.","sending":"Sending..."},"navigation":{"next":"Next","previous":"Previous","sync":"Sync Presentation"},"loading":"loading presentation...","activity_complete":"Activity complete","follow":{"label":"Follow Mode:"},"refresh":"Are you sure you want to refresh the slide content?\n\n(Use `RELOAD` to fully reload the entire UI)","reload":"Are you sure you want to reload Showoff?","preshow":{"prompt":"Minutes from now to start?","resume":"Resuming in:"},"tour":{"show":"See the Tour","reset":"Reset Hints","welcome":"<h3>Welcome to Showoff</h3>Let me show you around. After you finish this tour, it won't show again.","displayview":"Start by clicking this button to open the Display Window; then drag it onto the projector.","annotations":"Draw on your slides everywhere the presentation is displayed.","timer":"Set a countdown timer to help you stay on pace.","pace":"Audience members can use this to tell you if you're moving too quickly. Try to keep the indicator centered.","questions":"Questions asked by audience members are displayed here. You'll also see a count indicator on the Display Window when you have questions to answer.","notes":"Configure the notes display by zooming text, resizing the pane, or even popping it out into a new window.","slidesource":"The name of the slide is displayed here.","settings":"Would you like a different presenter layout? Choose that and other settings here.","edit":"This button will open your web-based editor--usually something like GitHub.","report":"Don't forget to report issues when you see them.","activity":{"count":"This will count down as audience members mark their activity complete. Their presentations will pause until completed.","complete":"Check this box when you're ready to move on. The presentation will pause while you're working."},"form":{"responses":"As questions are answered, they'll show up as a bar chart with the number of answers to each question on the right.","display":"Press this button to present a snapshot of the live responses on slide.","save":"Press this button to save your responses. The presentation will pause while answering."},"menu":{"start":"Click here to open the menu.","navigation":"Quickly navigate to any slide.","download":"Download presentation support files.","pace":"Provide pace feedback.","questions":"Ask live questions of the presenter.","feedback":"Provide suggestions for improving the content."}},"downloads":{"title":"File Downloads"},"help":{"title":"Help","next":"Move to the next slide.","prev":"Move to the previous slide.","nextsec":"Move to the next section.","prevsec":"Move to the previous section.","contents":"Show the table of contents menu.","follow":"Toggle follow mode.","help":"Show this help dialog.","refresh":"Refresh slide content.","reload":"Completely reload Showoff.","blank":"Blank the screen.","footer":"Toggle the display footer.","notes":"Toggle notes display.","clear":"Clear code execution results.","pause":"Pause the presentation.","preshow":"Display slideshow of <tt>preshow</tt> images on a timer.","execute":"Execute the first visible code block.","debug":"Show debugging information.","close":"Close"},"stats":{"title":"Viewing Statistics","stray":"of your audience is not viewing the same slide you are.","idle":"of your audience is idle.","current":"Slides currently being viewed","elapsed":"Elapsed time spent on each slide","nodata":"No data to display.","allcurrent":"All audience members are viewing the presenter's slide."},"forms":{"display":"Display Results","save":"Save"},"presenter":{"topbar":{"annotations":"Annotations","edit":"Edit Slide","report":"Report Issue With Slide","stats":"Viewing Statistics","downloads":"Downloads","display":"Display Window","print":"Print Slides","settings":"Settings","newpage":"Open in a new page...","tooltip":{"annotations":"Enable the annotations subsystem.","edit":"Edit current slide in new window.","report":"Report an issue with the current slide.","stats":"See the slides your audience is interacting with.","downloads":"Open the file downloads in a menu or new page.","display":"Enable the Display Window; you should put this on the projector.","print":"Print slides using a new window.","settings":"Open the Settings dialog."}},"preview":{"next":"Next","previous":"Previous"},"mobile":{"update":"Update"},"notes":{"label":"Showoff Notes","personal":"Personal Notes"},"timer":{"label":"Timer:","start":"Start","pause":"Pause","resume":"Resume","cancel":"Cancel","unit":"minutes"},"pace":{"faster":"Speed Up!","slower":"Slow Down!"},"questions":"Audience Questions","annotation":{"tools":"Tools","lines":"Lines","shapes":"Shapes"},"status":{"label":"Slides:"},"settings":{"label":"Settings","close":"Close","follower":{"label":"Update Follower","tooltip":"Send slide change notifications.","description":"When this is enabled, the Showoff server will track your slide changes. Disable it to observe the presentation without inadvertently causing slide changes."},"remote":{"label":"Enable Remote","tooltip":"Enables tracking of other presenters.","description":"When this is enabled, you can load the presenter in another browser (typically on your mobile phone) to control the presentation."},"layout":{"label":"Layout","default":"Default Layout","thumbs":"Display thumbnail previews of the next and previous slides.","beside":"Display the next slide as a large preview in the main presenter view.","floating":"Open the next slide as a floating window.","confirmation":"Browser security requires confirmation before opening a new window.","open":"Open Window","cancel":"cancel","reset":{"label":"Clear Showoff settings.","tooltip":"Reset Showoff UI settings to default values."}},"language":{"label":"Content Language","tooltip":"Select from available translations, or autoselect based on your browser settings.","description":"This presentation is available in different languages. Choose the language you would like to view or leave it at <tt>automatic</tt> to use your browser settings."}},"print":{"label":"Choose type of printed notes","description":"Select the content you'd like to show under the slides.","none":"Don't include notes","notes":"Presenter Notes","handouts":"Audience Handouts"}},"language":{"auto":"Automatic","disable":"Disable Translations"},"error":{"file_not_found":"File Not Found!"}});
+
+  </script>
+
+</head>
+
+<body>
+<div id="questionsIndicator"></div>
+
+<i id="hamburger" class="fa fa-bars fa-2x"></i>
+<div id="sidebarWrapper">
+    <div id="navigationHover"></div>
+    <div id="feedbackSidebar" class="sideMenu">
+    <img id="disconnected" src="css/disconnected.png">
+    <h3>Showoff Menu</h3>
+    <div id="navToggle" class="buttonWrapper"><i class=" fa fa-bookmark"></i> Table of Contents</div>
+    <div id="navigation" class="submenu"></div>
+    
+    <hr>
+
+    
+
+    
+
+    <div id="closeMenu" class="buttonWrapper"><i class="fa fa-close"></i> Close</div>
+    <hr>
+
+    <small>
+        <p>Press <code>?</code> for help.</p>
+        <p>All features are anonymous.</p>
+    </small>
+    </div>
+    <div id="sidebarExit"></div>
+</div>
+<div id="help-modal" title="Help">
+  <div id="help">
+    <div>
+      <span class="description">Move to the next slide.</span>
+      <span class="action">NEXT</span>
+      <span class="hotkeys"><span class="key">space</span><span class="key">down</span><span class="key">right</span><span class="key">pagedown</span></span>
+    </div>
+    <div>
+      <span class="description">Move to the previous slide.</span>
+      <span class="action">PREV</span>
+      <span class="hotkeys"><span class="key">up</span><span class="key">left</span><span class="key">pageup</span></span>
+    </div>
+    <div>
+      <span class="description">Move to the next section.</span>
+      <span class="action">NEXTSEC</span>
+      <span class="hotkeys"><span class="key">SPACE</span><span class="key">DOWN</span><span class="key">RIGHT</span><span class="key">PAGEDOWN</span></span>
+    </div>
+    <div>
+      <span class="description">Move to the previous section.</span>
+      <span class="action">PREVSEC</span>
+      <span class="hotkeys"><span class="key">UP</span><span class="key">LEFT</span><span class="key">PAGEUP</span></span>
+    </div>
+    <div>
+      <span class="description">Show the table of contents menu.</span>
+      <span class="action">CONTENTS</span>
+      <span class="hotkeys"><span class="key">c</span><span class="key">t</span></span>
+    </div>
+    <div>
+      <span class="description">Toggle follow mode.</span>
+      <span class="action">FOLLOW</span>
+      <span class="hotkeys"><span class="key">f</span></span>
+    </div>
+    <div>
+      <span class="description">Show this help dialog.</span>
+      <span class="action">HELP</span>
+      <span class="hotkeys"><span class="key">h</span><span class="key">/</span><span class="key">?</span></span>
+    </div>
+
+    <hr />
+
+    <div>
+      <span class="description">Refresh slide content.</span>
+      <span class="action">REFRESH</span>
+      <span class="hotkeys"><span class="key">r</span></span>
+    </div>
+    <div>
+      <span class="description">Completely reload Showoff.</span>
+      <span class="action">RELOAD</span>
+      <span class="hotkeys"><span class="key">R</span></span>
+    </div>
+    <div>
+      <span class="description">Blank the screen.</span>
+      <span class="action">BLANK</span>
+      <span class="hotkeys"><span class="key">b</span><span class="key">.</span></span>
+    </div>
+    <div>
+      <span class="description">Toggle the display footer.</span>
+      <span class="action">FOOTER</span>
+      <span class="hotkeys"><span class="key">F</span></span>
+    </div>
+    <div>
+      <span class="description">Toggle notes display.</span>
+      <span class="action">NOTES</span>
+      <span class="hotkeys"><span class="key">n</span></span>
+    </div>
+    <div>
+      <span class="description">Clear code execution results.</span>
+      <span class="action">CLEAR</span>
+      <span class="hotkeys"><span class="key">esc</span></span>
+    </div>
+    <div>
+      <span class="description">Pause the presentation.</span>
+      <span class="action">PAUSE</span>
+      <span class="hotkeys"><span class="key">p</span></span>
+    </div>
+    <div>
+      <span class="description">Display slideshow of <tt>preshow</tt> images on a timer.</span>
+      <span class="action">PRESHOW</span>
+      <span class="hotkeys"><span class="key">P</span></span>
+    </div>
+    <div>
+      <span class="description">Execute the first visible code block.</span>
+      <span class="action">EXECUTE</span>
+      <span class="hotkeys"><span class="key">x</span><span class="key">f5</span></span>
+    </div>
+
+    <hr />
+
+    <div>
+      <span class="description">Show debugging information.</span>
+      <span class="action">DEBUG</span>
+      <span class="hotkeys"><span class="key">d</span></span>
+    </div>
+  </div>
+</div>
+
+<div id="preso"><center>loading presentation...</center></div>
+<a id="synchronize"><i class="fa fa-link" aria-hidden="true" href="#"></i> Sync Presentation</a>
+<div id="notes"></div>
+
+<footer id="footer">
+  <span id="followLabel" class="container">Follow Mode: <i id="followMode" class="fa fa-ban" aria-hidden="true"></i></span>
+  <span id="slideInfo" class="container"></span>
+  <span id="debugInfo" class="container"></span>
+  <span id="notesInfo" class="container"></span>
+  <span id="slideFilename" class="container"></span>
+  <img id="disconnected" src="css/disconnected.png" />
+</footer>
+
+<div id="slides" class="offscreen" style="display:none;">
+<div data-section="intro" data-title="intro" id="intro_intro1" class="slide center" data-transition="none">
+<div class="content center" ref="intro/intro:1">
+<p><img src="./file/intro/GitLogo.png" alt="Git Logo"></p>
+
+<h2>Git - Distributed Version Control System (DVCS)</h2>
+
+<h3>by Jason Meridth</h3>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="intro" data-title="intro" id="intro_intro2" class="slide center" data-transition="none">
+<div class="content center" ref="intro/intro:2">
+<h3>Disclaimer:</h3>
+
+<h2><a href="http://github.com/schacon/git-presentations" target="_blank">http://github.com/schacon/git-presentations</a></h2>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="intro" data-title="intro" id="intro_intro3" class="slide center" data-transition="none">
+<div class="content center" ref="intro/intro:3">
+<h2>Me</h2>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="intro" data-title="intro" id="intro_intro4" class="slide center" data-transition="none">
+<div class="content center" ref="intro/intro:4">
+<h2>Jason Meridth</h2>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="what_is_git" data-title="whatisgit" id="what_is_git_whatisgit1" class="slide center" data-transition="none">
+<div class="content center" ref="what_is_git/whatisgit:1">
+<h1>What is Git?</h1>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="what_is_git" data-title="whatisgit" id="what_is_git_whatisgit2" class="slide center" data-transition="none">
+<div class="content center" ref="what_is_git/whatisgit:2">
+<blockquote>
+<p>"I'm an egotistical bastard, and I name all my projects after myself. First Linux, now git."</p>
+</blockquote>
+
+<p><u>Linus Torvalds (creator of the Linux operating system)</u></p>
+
+<p><img src="./file/what_is_git/Tux.png" width="354" height="400"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="what_is_git" data-title="whatisgit" id="what_is_git_whatisgit3" class="slide bullets incremental" data-transition="none">
+<div class="content bullets incremental" ref="what_is_git/whatisgit:3">
+<h1>git is</h1>
+
+<ul>
+<li>stupid content tracker</li>
+<li>directory content management system</li>
+<li>tree history storage system</li>
+<li>a toolkit</li>
+</ul>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="what_is_git" data-title="whatisgit" id="what_is_git_whatisgit4" class="slide center" data-transition="none">
+<div class="content center" ref="what_is_git/whatisgit:4">
+<p><img src="./file/what_is_git/GitCommands.png" alt="GitCommands"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="what_is_git" data-title="whatisgit" id="what_is_git_whatisgit5" class="slide center" data-transition="none">
+<div class="content center" ref="what_is_git/whatisgit:5">
+<p><img src="./file/what_is_git/GitPlumbingCommands.png" alt="GitPlumbingCommands"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="what_is_git" data-title="whatisgit" id="what_is_git_whatisgit6" class="slide center" data-transition="none">
+<div class="content center" ref="what_is_git/whatisgit:6">
+<p><img src="./file/what_is_git/GitPlumbingCommands.png" alt="GitPlumbingCommands"></p>
+
+<h3>the "plumbing"</h3>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="what_is_git" data-title="whatisgit" id="what_is_git_whatisgit7" class="slide center" data-transition="none">
+<div class="content center" ref="what_is_git/whatisgit:7">
+<p><img src="./file/what_is_git/GitCommands.png" alt="GitCommands"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="what_is_git" data-title="whatisgit" id="what_is_git_whatisgit8" class="slide center" data-transition="none">
+<div class="content center" ref="what_is_git/whatisgit:8">
+<p><img src="./file/what_is_git/GitPorcelainCommands.png" alt="GitPorcelainCommands"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="what_is_git" data-title="whatisgit" id="what_is_git_whatisgit9" class="slide center" data-transition="none">
+<div class="content center" ref="what_is_git/whatisgit:9">
+<p><img src="./file/what_is_git/GitPorcelainCommands.png" alt="GitPorcelainCommands"></p>
+
+<h3>the "porcelain"</h3>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="what_is_git" data-title="whatisgit" id="what_is_git_whatisgit10" class="slide center" data-transition="none">
+<div class="content center" ref="what_is_git/whatisgit:10">
+<p><img src="./file/what_is_git/GitCommands.png" alt="GitCommands"></p>
+
+<h3>
+<strong>140</strong> Total Commands</h3>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="what_is_git" data-title="whatisgit" id="what_is_git_whatisgit11" class="slide center" data-transition="none">
+<div class="content center" ref="what_is_git/whatisgit:11">
+<p><img src="./file/what_is_git/GitPorcelainCommands.png" alt="GitPorcelainCommands"></p>
+
+<h3>
+<strong>43</strong> Porcelain Commands</h3>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="what_is_git" data-title="whatisgit" id="what_is_git_whatisgit12" class="slide center" data-transition="none">
+<div class="content center" ref="what_is_git/whatisgit:12">
+<p><img src="./file/what_is_git/GitCommandsWeCover.png" alt="GitCommandsWeCover"></p>
+
+<h3>We'll Cover A Little Over a <strong>1/3</strong>
+</h3>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="what_is_git" data-title="whatisgit" id="what_is_git_whatisgit13" class="slide bullets incremental" data-transition="none">
+<div class="content bullets incremental" ref="what_is_git/whatisgit:13">
+<h1>git is</h1>
+
+<ul>
+<li><p>not subversion!</p></li>
+<li><p><img src="./file/what_is_git/GitIsNotSubversion.png" alt="GitIsNotSubversion"></p></li>
+</ul>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="what_is_git" data-title="whatisgit" id="what_is_git_whatisgit14" class="slide center" data-transition="none">
+<div class="content center" ref="what_is_git/whatisgit:14">
+<h1>forget subversion!</h1>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="what_is_git" data-title="whatisgit" id="what_is_git_whatisgit15" class="slide bullets incremental" data-transition="none">
+<div class="content bullets incremental" ref="what_is_git/whatisgit:15">
+<p><img src="./file/what_is_git/VCSEvolution.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="what_is_git" data-title="whatisgit" id="what_is_git_whatisgit16" class="slide center" data-transition="none">
+<div class="content center" ref="what_is_git/whatisgit:16">
+<p><img src="./file/what_is_git/NotAnEvolution.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="first_steps" data-title="first_steps" id="first_steps_first_steps1" class="slide center" data-transition="none">
+<div class="content center" ref="first_steps/first_steps:1">
+<p><img src="./file/first_steps/FirstSteps.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="first_steps" data-title="first_steps" id="first_steps_first_steps2" class="slide commandline incremental" data-transition="none">
+<div class="content commandline incremental" ref="first_steps/first_steps:2">
+<pre><code><code class="command">$ git config --global user.name "Jason Meridth"</code>
+<code class="command">$ git config --global user.email "jmeridth@gmail.com"</code>
+</code></pre>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="first_steps" data-title="first_steps" id="first_steps_first_steps3" class="slide commandline incremental" data-transition="none">
+<div class="content commandline incremental" ref="first_steps/first_steps:3">
+<pre><code><code class="command">$ git config --global color.ui true</code>
+<code class="command">$ git config --global push.default tracking</code>
+</code></pre>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_init" data-title="git_init" id="git_init_git_init1" class="slide center" data-transition="none">
+<div class="content center" ref="git_init/git_init:1">
+<p><img src="./file/git_init/GitInit.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_init" data-title="git_init" id="git_init_git_init2" class="slide commandline incremental" data-transition="none">
+<div class="content commandline incremental" ref="git_init/git_init:2">
+<pre><code><code class="command">$ touch hello_world.rb</code>
+<code class="command">$ git init</code>
+</code></pre>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_init" data-title="git_init" id="git_init_git_init3" class="slide center" data-transition="none">
+<div class="content center" ref="git_init/git_init:3">
+<p><img src="./file/git_init/TreeCommand.png" alt="TreeCommand"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_init" data-title="git_init" id="git_init_git_init4" class="slide center" data-transition="none">
+<div class="content center" ref="git_init/git_init:4">
+<p><img src="./file/git_init/TreeCommandShowingFile.png" alt="TreeCommandShowingFile"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_init" data-title="git_init" id="git_init_git_init5" class="slide center" data-transition="none">
+<div class="content center" ref="git_init/git_init:5">
+<p><img src="./file/git_init/TreeCommandShowingDotGitFolder.png" alt="TreeCommandShowingDotGitFolder"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="autocrlf" data-title="autocrlf" id="autocrlf_autocrlf" class="slide center" data-transition="none">
+<div class="content center" ref="autocrlf/autocrlf">
+<h3>git config --global core.autocrlf false</h3>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_clone" data-title="git_clone" id="git_clone_git_clone1" class="slide center" data-transition="none">
+<div class="content center" ref="git_clone/git_clone:1">
+<p><img src="./file/git_clone/GitClone.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_clone" data-title="git_clone" id="git_clone_git_clone2" class="slide commandline incremental" data-transition="none">
+<div class="content commandline incremental" ref="git_clone/git_clone:2">
+<pre><code><code class="command">$ git clone</code>
+</code></pre>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_clone" data-title="git_clone" id="git_clone_git_clone3" class="slide commandline incremental" data-transition="none">
+<div class="content commandline incremental" ref="git_clone/git_clone:3">
+<pre><code><code class="command">$ git clone git://github.com/jmeridth/console_app.git</code>
+</code></pre>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_clone" data-title="git_clone" id="git_clone_git_clone4" class="slide commandline incremental small" data-transition="none">
+<div class="content commandline incremental small" ref="git_clone/git_clone:4">
+<pre><code><code class="command">$ git clone git://github.com/jmeridth/console_app.git superjason</code>
+</code></pre>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_clone" data-title="git_clone" id="git_clone_git_clone5" class="slide commandline incremental small" data-transition="none">
+<div class="content commandline incremental small" ref="git_clone/git_clone:5">
+<pre><code><code class="command">$ git clone git://github.com/jmeridth/console_app.git</code>
+<code class="result">
+Initialized empty Git repository in /Users/jasonmeridth/console_app/.git/
+remote: Counting objects: 79, done.
+remote: Compressing objects: 100% (74/74), done.
+remote: Total 79 (delta 23), reused 0 (delta 0)
+Receiving objects: 100% (79/79), 472.82 KiB | 235 KiB/s, done.
+Resolving deltas: 100% (23/23), done.
+
+</code><code class="command">$ cd console_app</code>
+<code class="result">
+</code><code class="command">$ ls</code>
+<code class="result">total 16
+Readme  console_app  console_app.library  console_app.sln\
+console_app.tests  lib  something_new.txt
+</code></code></pre>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="a_basic_workflow" data-title="0_a_basic_workflow" id="a_basic_workflow_0_a_basic_workflow1" class="slide bullets incremental" data-transition="none">
+<div class="content bullets incremental" ref="a_basic_workflow/0_a_basic_workflow:1">
+<h1>A Basic Workflow</h1>
+
+<ul>
+<li>Edit files</li>
+<li>Stage the changes</li>
+<li>Review your changes</li>
+<li>Commit the changes</li>
+</ul>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="a_basic_workflow" data-title="0_a_basic_workflow" id="a_basic_workflow_0_a_basic_workflow2" class="slide center" data-transition="none">
+<div class="content center" ref="a_basic_workflow/0_a_basic_workflow:2">
+<p><img src="./file/a_basic_workflow/LocalStructure.png" alt="LocalStructure"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="a_basic_workflow" data-title="0_a_basic_workflow" id="a_basic_workflow_0_a_basic_workflow3" class="slide center" data-transition="none">
+<div class="content center" ref="a_basic_workflow/0_a_basic_workflow:3">
+<p><img src="./file/a_basic_workflow/LocalStructureWorkingDirectory.png" alt="LocalStructureWorkingDirectory"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="a_basic_workflow" data-title="0_a_basic_workflow" id="a_basic_workflow_0_a_basic_workflow4" class="slide center" data-transition="none">
+<div class="content center" ref="a_basic_workflow/0_a_basic_workflow:4">
+<p><img src="./file/a_basic_workflow/LocalStructureRepository.png" alt="LocalStructureRepository"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="a_basic_workflow" data-title="0_a_basic_workflow" id="a_basic_workflow_0_a_basic_workflow5" class="slide center" data-transition="none">
+<div class="content center" ref="a_basic_workflow/0_a_basic_workflow:5">
+<p><img src="./file/a_basic_workflow/LocalStructureIndexStaging.png" alt="LocalStructureIndexStaging"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="a_basic_workflow" data-title="0_a_basic_workflow" id="a_basic_workflow_0_a_basic_workflow6" class="slide center" data-transition="none">
+<div class="content center" ref="a_basic_workflow/0_a_basic_workflow:6">
+<h1>A Basic Workflow</h1>
+
+<h2>Edit files</h2>
+
+<h2><span class="grey">Stage the changes</span></h2>
+
+<h2><span class="grey">Review your changes</span></h2>
+
+<h2><span class="grey">Commit the changes</span></h2>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="a_basic_workflow" data-title="0_a_basic_workflow" id="a_basic_workflow_0_a_basic_workflow7" class="slide CODE" data-transition="none">
+<div class="content CODE" ref="a_basic_workflow/0_a_basic_workflow:7">
+<h2>We have the following code in a file called main.rb that is already in a git repository</h2>
+
+<p><br>
+    @@@ruby
+    #! /usr/bin/env ruby</p>
+
+<pre><code>puts 'hello world'
+</code></pre>
+
+<p><br>   </p>
+
+<h2>and we add a comment</h2>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="a_basic_workflow" data-title="0_a_basic_workflow" id="a_basic_workflow_0_a_basic_workflow8" class="slide code" data-transition="none">
+<div class="content code" ref="a_basic_workflow/0_a_basic_workflow:8">
+<pre class="highlight"><code class="language-ruby">#! /usr/bin/env ruby
+
+# this program prints out 'hello world'
+
+puts 'hello world'</code></pre>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="a_basic_workflow" data-title="git_status" id="a_basic_workflow_1_git_status_git_status1" class="slide center" data-transition="none">
+<div class="content center" ref="a_basic_workflow/1_git_status/git_status:1">
+<p><img src="./file/a_basic_workflow/1_git_status/GitStatus.png" alt="GitStatus"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="a_basic_workflow" data-title="git_status" id="a_basic_workflow_1_git_status_git_status2" class="slide small" data-transition="none">
+<div class="content small" ref="a_basic_workflow/1_git_status/git_status:2">
+<pre>
+$ git status
+# On branch master
+# Changed but not updated:
+#   (use "git add <file>..." to update what will be committed)
+#
+#   <span class="red">modified:   main.rb</span>
+#
+no changes added to commit (use "git add" and/or "git commit -a")
+</file></pre>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="a_basic_workflow" data-title="git_status" id="a_basic_workflow_1_git_status_git_status3" class="slide small" data-transition="none">
+<div class="content small" ref="a_basic_workflow/1_git_status/git_status:3">
+<pre>
+$ git status
+# On branch master
+# Changed but not <span class="red">STAGED</span>:
+#   (use "git add <file>..." to update what will be committed)
+#
+#   <span class="red">modified:   main.rb</span>
+#
+no changes added to commit (use "git add" and/or "git commit -a")
+</file></pre>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="a_basic_workflow" data-title="git_add" id="a_basic_workflow_2_git_add_git_add1" class="slide center" data-transition="none">
+<div class="content center" ref="a_basic_workflow/2_git_add/git_add:1">
+<h1>A Basic Workflow</h1>
+
+<h2><span class="grey">Edit files</span></h2>
+
+<h2>Stage the changes</h2>
+
+<h2>Review your changes</h2>
+
+<h2><span class="grey">Commit the changes</span></h2>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="a_basic_workflow" data-title="git_add" id="a_basic_workflow_2_git_add_git_add2" class="slide center" data-transition="none">
+<div class="content center" ref="a_basic_workflow/2_git_add/git_add:2">
+<p><img src="./file/a_basic_workflow/2_git_add/GitAdd.png" alt="GitAdd"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="a_basic_workflow" data-title="git_add" id="a_basic_workflow_2_git_add_git_add3" class="slide center" data-transition="none">
+<div class="content center" ref="a_basic_workflow/2_git_add/git_add:3">
+<p><img src="./file/a_basic_workflow/2_git_add/LocalStructure.png" alt="LocalStructure"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="a_basic_workflow" data-title="git_add" id="a_basic_workflow_2_git_add_git_add4" class="slide center" data-transition="none">
+<div class="content center" ref="a_basic_workflow/2_git_add/git_add:4">
+<p><img src="./file/a_basic_workflow/2_git_add/GitAddUI.png" alt="GitAddUI"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="a_basic_workflow" data-title="git_add" id="a_basic_workflow_2_git_add_git_add5" class="slide" data-transition="none">
+<div class="content " ref="a_basic_workflow/2_git_add/git_add:5">
+<pre>
+$ git add main.rb
+$ git status
+# On branch master
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#   <span class="green">modified:   main.rb</span>
+#
+</file></pre>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="a_basic_workflow" data-title="git_add" id="a_basic_workflow_2_git_add_git_add6" class="slide" data-transition="none">
+<div class="content " ref="a_basic_workflow/2_git_add/git_add:6">
+<pre>
+$ git add main.rb
+$ git status
+# On branch master
+# Changes <span class="red">THAT ARE STAGED</span>:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#   modified:   main.rb
+#
+</file></pre>
+    
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="a_basic_workflow" data-title="git_add" id="a_basic_workflow_2_git_add_git_add7" class="slide commandline incremental small" data-transition="none">
+<div class="content commandline incremental small" ref="a_basic_workflow/2_git_add/git_add:7">
+<pre><code><code class="command">$ vim app.yaml</code>
+</code></pre>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="a_basic_workflow" data-title="git_add" id="a_basic_workflow_2_git_add_git_add8" class="slide" data-transition="none">
+<div class="content " ref="a_basic_workflow/2_git_add/git_add:8">
+<pre><code>application: meridth
+version: 1
+runtime: ruby
+api_version: 1
+handlers:
+- url: .*
+script: main.rb
+~
+~
+~
+"app.yaml" 8L, 101C
+</code></pre>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="a_basic_workflow" data-title="git_add" id="a_basic_workflow_2_git_add_git_add9" class="slide" data-transition="none">
+<div class="content " ref="a_basic_workflow/2_git_add/git_add:9">
+<pre><code>application: meridth
+version: 
+runtime: ruby
+api_version: 1
+handlers:
+- url: .*
+script: main.rb
+~
+~
+~
+"app.yaml" 8L, 101C
+</code></pre>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="a_basic_workflow" data-title="git_add" id="a_basic_workflow_2_git_add_git_add10" class="slide" data-transition="none">
+<div class="content " ref="a_basic_workflow/2_git_add/git_add:10">
+<pre><code>application: meridth
+version: 2
+runtime: ruby
+api_version: 1
+handlers:
+- url: .*
+script: main.rb
+~
+~
+~
+"app.yaml" 8L, 101C
+</code></pre>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="a_basic_workflow" data-title="git_add" id="a_basic_workflow_2_git_add_git_add11" class="slide small" data-transition="none">
+<div class="content small" ref="a_basic_workflow/2_git_add/git_add:11">
+<pre>
+$ git status
+# On branch master
+# Changes to be committed:
+# (use "git reset HEAD <file>..." to unstage)
+#
+# <span class="green">modified: main.rb</span>
+#
+# Changed but not updated:
+# (use "git add <file>..." to update what will be committed)
+#
+# <span class="red">modified: app.yaml</span>
+#
+</file></file></pre>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="a_basic_workflow" data-title="git_add" id="a_basic_workflow_2_git_add_git_add12" class="slide commandline incremental small" data-transition="none">
+<div class="content commandline incremental small" ref="a_basic_workflow/2_git_add/git_add:12">
+<pre><code><code class="command">$ vim main.rb</code>
+</code></pre>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="a_basic_workflow" data-title="git_add" id="a_basic_workflow_2_git_add_git_add13" class="slide code" data-transition="none">
+<div class="content code" ref="a_basic_workflow/2_git_add/git_add:13">
+<pre class="highlight"><code class="language-ruby">#! /usr/bin/env ruby
+
+# this program prints out 'hello world'
+
+puts 'hello world'</code></pre>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="a_basic_workflow" data-title="git_add" id="a_basic_workflow_2_git_add_git_add14" class="slide" data-transition="none">
+<div class="content " ref="a_basic_workflow/2_git_add/git_add:14">
+<h2>we change the comment to use 'Hola Mundo' instead of 'Hello World'</h2>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="a_basic_workflow" data-title="git_add" id="a_basic_workflow_2_git_add_git_add15" class="slide code" data-transition="none">
+<div class="content code" ref="a_basic_workflow/2_git_add/git_add:15">
+<pre class="highlight"><code class="language-ruby">#! /usr/bin/env ruby
+
+# this program prints out 'Hola Mundo'
+
+puts 'Hola Mundo'</code></pre>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="a_basic_workflow" data-title="git_add" id="a_basic_workflow_2_git_add_git_add16" class="slide small" data-transition="none">
+<div class="content small" ref="a_basic_workflow/2_git_add/git_add:16">
+<pre>
+$ git status
+# On branch master
+# Changes to be committed:
+# (use "git reset HEAD <file>..." to unstage)
+#
+# <span class="green">modified: main.rb</span>
+#
+# Changed but not updated:
+# (use "git add <file>..." to update what will be committed)
+#
+# <span class="red">modified: app.yaml</span>
+# <span class="red">modified: main.rb</span>
+#
+</file></file></pre>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="a_basic_workflow" data-title="git_add" id="a_basic_workflow_2_git_add_git_add17" class="slide small" data-transition="none">
+<div class="content small" ref="a_basic_workflow/2_git_add/git_add:17">
+<pre>
+$ git status
+# On branch master
+# Changes <span class="red">THAT ARE STAGED</span>:
+# (use "git reset HEAD <file>..." to unstage)
+#
+# <span class="green">modified: main.rb</span>
+#
+# Changed but not updated:
+# (use "git add <file>..." to update what will be committed)
+#
+# <span class="red">modified: app.yaml</span>
+# <span class="red">modified: main.rb</span>
+#
+</file></file></pre>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="a_basic_workflow" data-title="git_add" id="a_basic_workflow_2_git_add_git_add18" class="slide small" data-transition="none">
+<div class="content small" ref="a_basic_workflow/2_git_add/git_add:18">
+<pre>
+$ git status
+# On branch master
+# Changes to be committed:
+# (use "git reset HEAD <file>..." to unstage)
+#
+# <span class="green">modified: main.rb</span>
+#
+# Changed <span class="red">THAT ARE UNSTAGED</span>:
+# (use "git add <file>..." to update what will be committed)
+#
+# <span class="red">modified: app.yaml</span>
+# <span class="red">modified: main.rb</span>
+#
+</file></file></pre>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="a_basic_workflow" data-title="git_add" id="a_basic_workflow_2_git_add_git_add19" class="slide small" data-transition="none">
+<div class="content small" ref="a_basic_workflow/2_git_add/git_add:19">
+<pre>
+$ git status
+# On branch master
+# Changes to be committed:
+# (use "git reset HEAD <file>..." to unstage)
+#
+# <span class="blue">modified: main.rb</span>
+#
+# Changed but not updated:
+# (use "git add <file>..." to update what will be committed)
+#
+# modified: app.yaml
+# <span class="blue">modified: main.rb</span>
+#
+</file></file></pre>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="a_basic_workflow" data-title="git_add" id="a_basic_workflow_2_git_add_git_add20" class="slide center" data-transition="none">
+<div class="content center" ref="a_basic_workflow/2_git_add/git_add:20">
+<p><img src="./file/a_basic_workflow/2_git_add/StagedAndWorkingDirectory.png" alt="StagedAndWorkingDirectory"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="a_basic_workflow" data-title="git_add" id="a_basic_workflow_2_git_add_git_add21" class="slide center" data-transition="none">
+<div class="content center" ref="a_basic_workflow/2_git_add/git_add:21">
+<p><img src="./file/a_basic_workflow/2_git_add/Staged.png" alt="Staged"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="a_basic_workflow" data-title="git_add" id="a_basic_workflow_2_git_add_git_add22" class="slide center" data-transition="none">
+<div class="content center" ref="a_basic_workflow/2_git_add/git_add:22">
+<h1>You have to stage a file</h1>
+
+<h1>after you edit it</h1>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="a_basic_workflow" data-title="git_add" id="a_basic_workflow_2_git_add_git_add23" class="slide center" data-transition="none">
+<div class="content center" ref="a_basic_workflow/2_git_add/git_add:23">
+<h1>You have to stage a file</h1>
+
+<h1>
+<strong>after</strong> you edit it</h1>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="a_basic_workflow" data-title="git_add" id="a_basic_workflow_2_git_add_git_add24" class="slide center" data-transition="none">
+<div class="content center" ref="a_basic_workflow/2_git_add/git_add:24">
+<h1>You have to stage a file</h1>
+
+<h1>
+<span class="red">after</span> you edit it</h1>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="a_basic_workflow" data-title="git_add" id="a_basic_workflow_2_git_add_git_add25" class="slide small" data-transition="none">
+<div class="content small" ref="a_basic_workflow/2_git_add/git_add:25">
+<pre>
+$ git add app.yaml main.rb
+$ git status
+# On branch master
+# Changes to be committed:
+# (use "git reset HEAD <file>..." to unstage)
+#
+# <span class="green">modified: app.yaml</span>
+# <span class="green">modified: main.rb</span>
+#
+</file></pre>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="a_basic_workflow" data-title="git_commit" id="a_basic_workflow_3_git_commit_git_commit1" class="slide center" data-transition="none">
+<div class="content center" ref="a_basic_workflow/3_git_commit/git_commit:1">
+<h1>A Basic Workflow</h1>
+
+<h2><span class="grey">Edit files</span></h2>
+
+<h2><span class="grey">Stage the changes</span></h2>
+
+<h2><span class="grey">Review your changes</span></h2>
+
+<h2>Commit the changes</h2>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="a_basic_workflow" data-title="git_commit" id="a_basic_workflow_3_git_commit_git_commit2" class="slide center" data-transition="none">
+<div class="content center" ref="a_basic_workflow/3_git_commit/git_commit:2">
+<p><img src="./file/a_basic_workflow/3_git_commit/GitCommit.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="a_basic_workflow" data-title="git_commit" id="a_basic_workflow_3_git_commit_git_commit3" class="slide center" data-transition="none">
+<div class="content center" ref="a_basic_workflow/3_git_commit/git_commit:3">
+<p><img src="./file/a_basic_workflow/3_git_commit/GitAddUI.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="a_basic_workflow" data-title="git_commit" id="a_basic_workflow_3_git_commit_git_commit4" class="slide center" data-transition="none">
+<div class="content center" ref="a_basic_workflow/3_git_commit/git_commit:4">
+<p><img src="./file/a_basic_workflow/3_git_commit/GitCommitUI.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="a_basic_workflow" data-title="git_commit" id="a_basic_workflow_3_git_commit_git_commit5" class="slide commandline incremental small" data-transition="none">
+<div class="content commandline incremental small" ref="a_basic_workflow/3_git_commit/git_commit:5">
+<pre><code><code class="command">$ git commit</code>
+<code class="result">
+
+</code><code class="command"># Please enter the commit message for your changes. Lines starting</code>
+<code class="command"># with '#' will be ignored, and an empty message aborts the commit.</code>
+<code class="command"># On branch master</code>
+<code class="command"># Changes to be committed:</code>
+<code class="command"># (use "git reset HEAD &lt;file&gt;..." to unstage)</code>
+<code class="command"># # modified: app.yaml</code>
+<code class="command"># modified: main.rb</code>
+<code class="command"># ~</code>
+<code class="result">~
+~
+~
+".git/COMMIT_EDITMSG" 10L, 279C
+</code></code></pre>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="a_basic_workflow" data-title="git_commit" id="a_basic_workflow_3_git_commit_git_commit6" class="slide commandline small" data-transition="none">
+<div class="content commandline small" ref="a_basic_workflow/3_git_commit/git_commit:6">
+<pre><code><code class="command">$ git commit</code>
+<code class="result">
+descripitive commit message
+</code><code class="command"># Please enter the commit message for your changes. Lines starting</code>
+<code class="command"># with '#' will be ignored, and an empty message aborts the commit.</code>
+<code class="command"># On branch master</code>
+<code class="command"># Changes to be committed:</code>
+<code class="command"># (use "git reset HEAD &lt;file&gt;..." to unstage)</code>
+<code class="command"># # modified: app.yaml</code>
+<code class="command"># modified: main.rb</code>
+<code class="command"># ~</code>
+<code class="result">~
+~
+~
+".git/COMMIT_EDITMSG" 10L, 279C
+</code></code></pre>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="a_basic_workflow" data-title="git_commit" id="a_basic_workflow_3_git_commit_git_commit7" class="slide commandline small" data-transition="none">
+<div class="content commandline small" ref="a_basic_workflow/3_git_commit/git_commit:7">
+<pre><code><code class="command">$ git commit</code>
+<code class="result">
+Created commit 77d3001: descriptive commit message
+2 files changed, 4 insertions(+), 2 deletions(-)
+</code></code></pre>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="a_basic_workflow" data-title="git_commit" id="a_basic_workflow_3_git_commit_git_commit8" class="slide center" data-transition="none">
+<div class="content center" ref="a_basic_workflow/3_git_commit/git_commit:8">
+<h1>A Basic Workflow</h1>
+
+<h2><span class="grey">Edit files</span></h2>
+
+<h3><span class="blue">vim / emacs / etc</span></h3>
+
+<h2><span class="grey">Stage the changes</span></h2>
+
+<h3><span class="blue">git add (file)</span></h3>
+
+<h2><span class="grey">Review your changes</span></h2>
+
+<h3><span class="blue">git status</span></h3>
+
+<h2><span class="grey">Commit the changes</span></h2>
+
+<h3><span class="blue">git commit</span></h3>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="a_basic_workflow" data-title="git_commit" id="a_basic_workflow_3_git_commit_git_commit9" class="slide center" data-transition="none">
+<div class="content center" ref="a_basic_workflow/3_git_commit/git_commit:9">
+<h1>cheating...</h1>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="a_basic_workflow" data-title="git_commit" id="a_basic_workflow_3_git_commit_git_commit10" class="slide center" data-transition="none">
+<div class="content center" ref="a_basic_workflow/3_git_commit/git_commit:10">
+<h1>A Basicerer Workflow</h1>
+
+<h2><span class="grey">Edit files</span></h2>
+
+<h3><span class="blue">vim / emacs / etc</span></h3>
+
+<h2><span class="grey">Stage &amp; commit the changes</span></h2>
+
+<h3><span class="blue">git commit -a</span></h3>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="a_basic_workflow" data-title="git_commit" id="a_basic_workflow_3_git_commit_git_commit11" class="slide center" data-transition="none">
+<div class="content center" ref="a_basic_workflow/3_git_commit/git_commit:11">
+<p><img src="./file/a_basic_workflow/3_git_commit/LocalOperations.png" alt="LocalOperations"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="a_basic_workflow" data-title="git_commit" id="a_basic_workflow_3_git_commit_git_commit12" class="slide center" data-transition="none">
+<div class="content center" ref="a_basic_workflow/3_git_commit/git_commit:12">
+<p><img src="./file/a_basic_workflow/3_git_commit/GitAddUI.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="a_basic_workflow" data-title="git_commit" id="a_basic_workflow_3_git_commit_git_commit13" class="slide center" data-transition="none">
+<div class="content center" ref="a_basic_workflow/3_git_commit/git_commit:13">
+<p><img src="./file/a_basic_workflow/3_git_commit/GitCommitUI.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_branch" data-title="git_branch" id="git_branch_git_branch1" class="slide center" data-transition="none">
+<div class="content center" ref="git_branch/git_branch:1">
+<p><img src="./file/git_branch/GitBranch.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_branch" data-title="git_branch" id="git_branch_git_branch2" class="slide center" data-transition="none">
+<div class="content center" ref="git_branch/git_branch:2">
+<p><img src="./file/git_branch/Branch1.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_branch" data-title="git_branch" id="git_branch_git_branch3" class="slide center" data-transition="none">
+<div class="content center" ref="git_branch/git_branch:3">
+<p><img src="./file/git_branch/Branch2.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_branch" data-title="git_branch" id="git_branch_git_branch4" class="slide center" data-transition="none">
+<div class="content center" ref="git_branch/git_branch:4">
+<p><img src="./file/git_branch/Branch3.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_branch" data-title="git_branch" id="git_branch_git_branch5" class="slide center" data-transition="none">
+<div class="content center" ref="git_branch/git_branch:5">
+<p><img src="./file/git_branch/Branch4.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_branch" data-title="git_branch" id="git_branch_git_branch6" class="slide center" data-transition="none">
+<div class="content center" ref="git_branch/git_branch:6">
+<p><img src="./file/git_branch/Branch5.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_checkout" data-title="git_checkout" id="git_checkout_git_checkout1" class="slide center" data-transition="none">
+<div class="content center" ref="git_checkout/git_checkout:1">
+<p><img src="./file/git_checkout/GitCheckout.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_checkout" data-title="git_checkout" id="git_checkout_git_checkout2" class="slide center" data-transition="none">
+<div class="content center" ref="git_checkout/git_checkout:2">
+<p><img src="./file/git_checkout/GitCheckout1.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_checkout" data-title="git_checkout" id="git_checkout_git_checkout3" class="slide center" data-transition="none">
+<div class="content center" ref="git_checkout/git_checkout:3">
+<p><img src="./file/git_checkout/GitCheckout2.png" width="1024" height="740"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_checkout" data-title="git_checkout" id="git_checkout_git_checkout4" class="slide center" data-transition="none">
+<div class="content center" ref="git_checkout/git_checkout:4">
+<p><img src="./file/git_checkout/GitCheckout3.png" width="1024" height="740"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_checkout" data-title="git_checkout" id="git_checkout_git_checkout5" class="slide center" data-transition="none">
+<div class="content center" ref="git_checkout/git_checkout:5">
+<p><img src="./file/git_checkout/GitCheckout4.png" width="1024" height="740"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_checkout" data-title="git_checkout" id="git_checkout_git_checkout6" class="slide center" data-transition="none">
+<div class="content center" ref="git_checkout/git_checkout:6">
+<p><img src="./file/git_checkout/GitCheckout5.png" width="1024" height="740"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_checkout" data-title="git_checkout" id="git_checkout_git_checkout7" class="slide center" data-transition="none">
+<div class="content center" ref="git_checkout/git_checkout:7">
+<p><img src="./file/git_checkout/GitCheckout6.png" width="1024" height="740"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_checkout" data-title="git_checkout" id="git_checkout_git_checkout8" class="slide center" data-transition="none">
+<div class="content center" ref="git_checkout/git_checkout:8">
+<p><img src="./file/git_checkout/GitCheckout7.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_checkout" data-title="git_checkout" id="git_checkout_git_checkout9" class="slide center" data-transition="none">
+<div class="content center" ref="git_checkout/git_checkout:9">
+<p><img src="./file/git_checkout/GitCheckout8.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_checkout" data-title="git_checkout" id="git_checkout_git_checkout10" class="slide center" data-transition="none">
+<div class="content center" ref="git_checkout/git_checkout:10">
+<p><img src="./file/git_checkout/GitCheckout9.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_checkout" data-title="git_checkout" id="git_checkout_git_checkout11" class="slide center" data-transition="none">
+<div class="content center" ref="git_checkout/git_checkout:11">
+<p><img src="./file/git_checkout/GitCheckout10.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_checkout" data-title="git_checkout" id="git_checkout_git_checkout12" class="slide center" data-transition="none">
+<div class="content center" ref="git_checkout/git_checkout:12">
+<p><img src="./file/git_checkout/GitCheckout11.png" width="1024" height="740"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_checkout" data-title="git_checkout" id="git_checkout_git_checkout13" class="slide commandline incremental" data-transition="none">
+<div class="content commandline incremental" ref="git_checkout/git_checkout:13">
+<pre><code><code class="command">$ git branch</code>
+<code class="result">* develop
+  master
+  story95
+</code><code class="command">$ git show-branch</code>
+<code class="result">* [develop] new file_size function
+ ! [master] added cat-file
+  ! [story05] show-commit-tree added
+---
+  + [story95] show-commit-tree added
+  + [story95^] added revparse
+*   [develop] new file_size function
+*   [develop^] modified show to raw
+*++ [master] added cat-file
+</code></code></pre>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_checkout" data-title="git_checkout" id="git_checkout_git_checkout14" class="slide center" data-transition="none">
+<div class="content center" ref="git_checkout/git_checkout:14">
+<p><img src="./file/git_checkout/GitCheckout12.png" alt="GitCheckout12"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_remote" data-title="git_remote" id="git_remote_git_remote1" class="slide center" data-transition="none">
+<div class="content center" ref="git_remote/git_remote:1">
+<p><img src="./file/git_remote/GitRemote.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_remote" data-title="git_remote" id="git_remote_git_remote2" class="slide center" data-transition="none">
+<div class="content center" ref="git_remote/git_remote:2">
+<p><img src="./file/git_remote/GitRemote1.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_remote" data-title="git_remote" id="git_remote_git_remote3" class="slide center" data-transition="none">
+<div class="content center" ref="git_remote/git_remote:3">
+<p><img src="./file/git_remote/GitRemote2.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_remote" data-title="git_remote" id="git_remote_git_remote4" class="slide center" data-transition="none">
+<div class="content center" ref="git_remote/git_remote:4">
+<p><img src="./file/git_remote/GitRemote3.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_remote" data-title="git_remote" id="git_remote_git_remote5" class="slide center" data-transition="none">
+<div class="content center" ref="git_remote/git_remote:5">
+<p><img src="./file/git_remote/GitRemote4.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_remote" data-title="git_remote" id="git_remote_git_remote6" class="slide center" data-transition="none">
+<div class="content center" ref="git_remote/git_remote:6">
+<p><img src="./file/git_remote/GitRemote5.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_remote" data-title="git_remote" id="git_remote_git_remote7" class="slide center" data-transition="none">
+<div class="content center" ref="git_remote/git_remote:7">
+<h3>We'll talk more about this later on</h3>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_log" data-title="git_log" id="git_log_git_log1" class="slide center" data-transition="none">
+<div class="content center" ref="git_log/git_log:1">
+<p><img src="./file/git_log/GitLog.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_log" data-title="git_log" id="git_log_git_log2" class="slide commandline incremental small" data-transition="none">
+<div class="content commandline incremental small" ref="git_log/git_log:2">
+<pre><code><code class="command">$ git log</code>
+<code class="result">commit da39a3ee5e6b4b0d3255bfef95601890afd80709
+Author: Jason Meridth &lt;jmeridth@gmail.com&gt;
+Date: Sun Apr 13 10:49:15 2008 -0700
+    update README formatting and added blame
+
+commit 11f6ad8ec52a2984abaafd7c3b516503785c2072
+Author: Jason Meridth &lt;jmeridth@gmail.com&gt;
+Date: Sun Apr 13 10:45:15 2008 -0700
+    changed my name a bit
+
+commit dd7b7b74ea160e049dd128478e074ce47254bde8
+Author: Jason Meridth &lt;jmeridth@gmail.com&gt;
+Date: Sun Apr 13 10:34:15 2008 -0700
+    added ls-files
+
+commit b60d121b438a380c343d5ec3c2037564b82ffef3
+Author: Jason Meridth &lt;jmeridth@gmail.com&gt;
+Date: Sun Apr 13 12:13:15 2008 -0700
+    made the ls-tree function recursive and list trees
+</code></code></pre>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_log" data-title="git_log" id="git_log_git_log3" class="slide commandline small" data-transition="none">
+<div class="content commandline small" ref="git_log/git_log:3">
+<pre><code><code class="command">$ git log</code>
+<code class="result">commit da39a3ee5e6b4b0d3255bfef95601890afd80709 \
+Author: Jason Meridth &lt;jmeridth@gmail.com&gt;       \  COMMIT
+Date: Sun Apr 13 10:49:15 2008 -0700             /
+    update README formatting and added blame    /
+
+commit 11f6ad8ec52a2984abaafd7c3b516503785c2072
+Author: Jason Meridth &lt;jmeridth@gmail.com&gt;
+Date: Sun Apr 13 10:45:15 2008 -0700
+    changed my name a bit
+
+commit dd7b7b74ea160e049dd128478e074ce47254bde8
+Author: Jason Meridth &lt;jmeridth@gmail.com&gt;
+Date: Sun Apr 13 10:34:15 2008 -0700
+    added ls-files
+
+commit b60d121b438a380c343d5ec3c2037564b82ffef3
+Author: Jason Meridth &lt;jmeridth@gmail.com&gt;
+Date: Sun Apr 13 12:13:15 2008 -0700
+    made the ls-tree function recursive and list trees
+</code></code></pre>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_log" data-title="git_log" id="git_log_git_log4" class="slide commandline small" data-transition="none">
+<div class="content commandline small" ref="git_log/git_log:4">
+<pre><code><code class="command">$ git log</code>
+<code class="result">commit da39a3ee5e6b4b0d3255bfef95601890afd80709
+Author: Jason Meridth &lt;jmeridth@gmail.com&gt;
+Date: Sun Apr 13 10:49:15 2008 -0700
+    update README formatting and added blame
+
+commit 11f6ad8ec52a2984abaafd7c3b516503785c2072 \
+Author: Jason Meridth &lt;jmeridth@gmail.com&gt;       \  COMMIT
+Date: Sun Apr 13 10:45:15 2008 -0700             /
+    changed my name a bit                       /
+
+commit dd7b7b74ea160e049dd128478e074ce47254bde8
+Author: Jason Meridth &lt;jmeridth@gmail.com&gt;
+Date: Sun Apr 13 10:34:15 2008 -0700
+    added ls-files
+
+commit b60d121b438a380c343d5ec3c2037564b82ffef3
+Author: Jason Meridth &lt;jmeridth@gmail.com&gt;
+Date: Sun Apr 13 12:13:15 2008 -0700
+    made the ls-tree function recursive and list trees
+</code></code></pre>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_log" data-title="git_log" id="git_log_git_log5" class="slide commandline small" data-transition="none">
+<div class="content commandline small" ref="git_log/git_log:5">
+<pre><code><code class="command">$ git log</code>
+<code class="result">commit da39a3ee5e6b4b0d3255bfef95601890afd80709 
+Author: Jason Meridth &lt;jmeridth@gmail.com&gt;
+Date: Sun Apr 13 10:49:15 2008 -0700            
+    update README formatting and added blame
+
+commit 11f6ad8ec52a2984abaafd7c3b516503785c2072
+Author: Jason Meridth &lt;jmeridth@gmail.com&gt;
+Date: Sun Apr 13 10:45:15 2008 -0700
+    changed my name a bit
+
+commit dd7b7b74ea160e049dd128478e074ce47254bde8     &lt;== SHA1 (unique)
+Author: Jason Meridth &lt;jmeridth@gmail.com&gt;
+Date: Sun Apr 13 10:34:15 2008 -0700
+    added ls-files
+
+commit b60d121b438a380c343d5ec3c2037564b82ffef3
+Author: Jason Meridth &lt;jmeridth@gmail.com&gt;
+Date: Sun Apr 13 12:13:15 2008 -0700
+    made the ls-tree function recursive and list trees
+</code></code></pre>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_log" data-title="git_log" id="git_log_git_log6" class="slide commandline small" data-transition="none">
+<div class="content commandline small" ref="git_log/git_log:6">
+<pre><code><code class="command">$ git log</code>
+<code class="result">commit da39a3ee5e6b4b0d3255bfef95601890afd80709
+Author: Jason Meridth &lt;jmeridth@gmail.com&gt;
+Date: Sun Apr 13 10:49:15 2008 -0700
+    update README formatting and added blame
+
+commit 11f6ad8ec52a2984abaafd7c3b516503785c2072
+Author: Jason Meridth &lt;jmeridth@gmail.com&gt;
+Date: Sun Apr 13 10:45:15 2008 -0700
+    changed my name a bit
+
+commit dd7b7b74ea160e049dd128478e074ce47254bde8
+Author: Jason Meridth &lt;jmeridth@gmail.com&gt;      &lt;== Author &amp; Email
+Date: Sun Apr 13 10:34:15 2008 -0700               (we set earlier)
+    added ls-files
+
+commit b60d121b438a380c343d5ec3c2037564b82ffef3
+Author: Jason Meridth &lt;jmeridth@gmail.com&gt;
+Date: Sun Apr 13 12:13:15 2008 -0700
+    made the ls-tree function recursive and list trees
+</code></code></pre>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_log" data-title="git_log" id="git_log_git_log7" class="slide commandline small" data-transition="none">
+<div class="content commandline small" ref="git_log/git_log:7">
+<pre><code><code class="command">$ git log</code>
+<code class="result">commit da39a3ee5e6b4b0d3255bfef95601890afd80709
+Author: Jason Meridth &lt;jmeridth@gmail.com&gt;
+Date: Sun Apr 13 10:49:15 2008 -0700
+    update README formatting and added blame
+
+commit 11f6ad8ec52a2984abaafd7c3b516503785c2072
+Author: Jason Meridth &lt;jmeridth@gmail.com&gt;
+Date: Sun Apr 13 10:45:15 2008 -0700
+    changed my name a bit
+
+commit dd7b7b74ea160e049dd128478e074ce47254bde8
+Author: Jason Meridth &lt;jmeridth@gmail.com&gt;
+Date: Sun Apr 13 10:34:15 2008 -0700            &lt;== Date/Time stamp
+    added ls-files
+
+commit b60d121b438a380c343d5ec3c2037564b82ffef3
+Author: Jason Meridth &lt;jmeridth@gmail.com&gt;
+Date: Sun Apr 13 12:13:15 2008 -0700
+    made the ls-tree function recursive and list trees
+</code></code></pre>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_log" data-title="git_log" id="git_log_git_log8" class="slide commandline small" data-transition="none">
+<div class="content commandline small" ref="git_log/git_log:8">
+<pre><code><code class="command">$ git log</code>
+<code class="result">commit da39a3ee5e6b4b0d3255bfef95601890afd80709
+Author: Jason Meridth &lt;jmeridth@gmail.com&gt;
+Date: Sun Apr 13 10:49:15 2008 -0700
+    update README formatting and added blame
+
+commit 11f6ad8ec52a2984abaafd7c3b516503785c2072
+Author: Jason Meridth &lt;jmeridth@gmail.com&gt;
+Date: Sun Apr 13 10:45:15 2008 -0700
+    changed my name a bit
+
+commit dd7b7b74ea160e049dd128478e074ce47254bde8
+Author: Jason Meridth &lt;jmeridth@gmail.com&gt;
+Date: Sun Apr 13 10:34:15 2008 -0700
+    added ls-files                                  &lt;== commit message
+
+commit b60d121b438a380c343d5ec3c2037564b82ffef3
+Author: Jason Meridth &lt;jmeridth@gmail.com&gt;
+Date: Sun Apr 13 12:13:15 2008 -0700
+    made the ls-tree function recursive and list trees
+</code></code></pre>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_log" data-title="git_log" id="git_log_git_log9" class="slide" data-transition="none">
+<div class="content " ref="git_log/git_log:9">
+<h1>git log --pretty</h1>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_log" data-title="git_log" id="git_log_git_log10" class="slide commandline incremental small" data-transition="none">
+<div class="content commandline incremental small" ref="git_log/git_log:10">
+<pre><code><code class="command">$ git log --pretty=oneline</code>
+<code class="result">da39a3ee5e6b4b0d3255bfef95601890afd80709 update README formatting and added blame
+11f6ad8ec52a2984abaafd7c3b516503785c2072 changed my name a bit
+dd7b7b74ea160e049dd128478e074ce47254bde8 added ls-files
+b60d121b438a380c343d5ec3c2037564b82ffef3 made the ls-tree function recursive and list trees
+4ad583af22c2e7d40c1c916b2920299155a46464 limiting log to 30
+9addbf544119efa4a64223b649750a510f0d463f -added todo options
+018f4d7f06cb8626e1756452581373e05ae41c56 added limit to log function
+2db6d21d365f544f7ca3bcfb443ac96898a7a069 fixed conflict
+bcf22dfc6fb76b7366b1f1675baf2332a0e6a7ce new version 0.1.2
+70374248fd7129088fef42b8f568443f6dce3a48 new version 0.1.0
+</code></code></pre>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_log" data-title="git_log" id="git_log_git_log11" class="slide commandline incremental small" data-transition="none">
+<div class="content commandline incremental small" ref="git_log/git_log:11">
+<pre><code><code class="command">$ git log --pretty=format:"%h %an %ar - %s"</code>
+<code class="result">da39a3e Jason Meridth 47 minutes ago - update README formatting and added blame
+11f6ad8 Jason Meridth 56 minutes ago - changed my name a bit
+dd7b7b7 Jason Meridth 60 minutes ago - added ls-files
+b60d121 Jason Meridth 2 weeks ago - made the ls-tree function recursive and list trees
+4ad583a Jason Meridth 2 weeks ago - limiting log to 30
+9addbf5 Jason Meridth 2 weeks ago - -added todo options
+018f4d7 Jason Meridth 2 weeks ago - added limit to log function
+2db6d21 Jason Meridth 3 weeks ago - fixed conflict
+bcf22df Jason Meridth 3 weeks ago - new version 0.1.2
+7037424 Jason Meridth 3 weeks ago - new version 0.1.0
+</code></code></pre>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_log" data-title="git_log" id="git_log_git_log12" class="slide" data-transition="none">
+<div class="content " ref="git_log/git_log:12">
+<h2><a href="http://www.jukie.net/bart/blog/pimping-out-git-log" title="Pimping out Git log" target="_blank">Pimping out Git log</a></h2>
+
+<p><br><br>
+<strong>git config --global alias.lg "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)
+%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset' --abbrev-commit --date=relative"</strong></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_log" data-title="git_log" id="git_log_git_log13" class="slide center" data-transition="none">
+<div class="content center" ref="git_log/git_log:13">
+<p><img src="./file/git_log/GitLg.png" alt="GitLg"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_fetch" data-title="git_fetch" id="git_fetch_git_fetch1" class="slide center" data-transition="none">
+<div class="content center" ref="git_fetch/git_fetch:1">
+<p><img src="./file/git_fetch/GitFetch.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_fetch" data-title="git_fetch" id="git_fetch_git_fetch2" class="slide center" data-transition="none">
+<div class="content center" ref="git_fetch/git_fetch:2">
+<p><img src="./file/git_fetch/GitFetch1.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_fetch" data-title="git_fetch" id="git_fetch_git_fetch3" class="slide center" data-transition="none">
+<div class="content center" ref="git_fetch/git_fetch:3">
+<p><img src="./file/git_fetch/GitFetch2.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_fetch" data-title="git_fetch" id="git_fetch_git_fetch4" class="slide center" data-transition="none">
+<div class="content center" ref="git_fetch/git_fetch:4">
+<p><img src="./file/git_fetch/GitFetch3.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_fetch" data-title="git_fetch" id="git_fetch_git_fetch5" class="slide center" data-transition="none">
+<div class="content center" ref="git_fetch/git_fetch:5">
+<h3>We'll talk more about this later on</h3>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_merge" data-title="git_merge" id="git_merge_git_merge1" class="slide center" data-transition="none">
+<div class="content center" ref="git_merge/git_merge:1">
+<p><img src="./file/git_merge/GitMerge.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_merge" data-title="git_merge" id="git_merge_git_merge2" class="slide center" data-transition="none">
+<div class="content center" ref="git_merge/git_merge:2">
+<p><img src="./file/git_merge/GitMerge1.png" width="1024" height="740"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_merge" data-title="git_merge" id="git_merge_git_merge3" class="slide center" data-transition="none">
+<div class="content center" ref="git_merge/git_merge:3">
+<p><img src="./file/git_merge/GitMerge2.png" width="1024" height="750"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_merge" data-title="git_merge" id="git_merge_git_merge4" class="slide center" data-transition="none">
+<div class="content center" ref="git_merge/git_merge:4">
+<p><img src="./file/git_merge/GitMerge3.png" width="1024" height="750"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_merge" data-title="git_merge" id="git_merge_git_merge5" class="slide center" data-transition="none">
+<div class="content center" ref="git_merge/git_merge:5">
+<p><img src="./file/git_merge/GitMerge4.png" width="1024" height="750"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_merge" data-title="git_merge" id="git_merge_git_merge6" class="slide center" data-transition="none">
+<div class="content center" ref="git_merge/git_merge:6">
+<p><img src="./file/git_merge/GitMerge5.png" width="1024" height="750"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_merge" data-title="git_merge" id="git_merge_git_merge7" class="slide center" data-transition="none">
+<div class="content center" ref="git_merge/git_merge:7">
+<p><img src="./file/git_merge/GitMerge6.png" width="1024" height="750"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_merge" data-title="git_merge" id="git_merge_git_merge8" class="slide center" data-transition="none">
+<div class="content center" ref="git_merge/git_merge:8">
+<p><img src="./file/git_merge/GitMerge7.png" width="1024" height="750"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_merge" data-title="git_merge" id="git_merge_git_merge9" class="slide center" data-transition="none">
+<div class="content center" ref="git_merge/git_merge:9">
+<p><img src="./file/git_merge/GitMerge8.png" width="1024" height="750"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_merge" data-title="git_merge" id="git_merge_git_merge10" class="slide center" data-transition="none">
+<div class="content center" ref="git_merge/git_merge:10">
+<p><img src="./file/git_merge/GitMerge9.png" width="1024" height="750"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_merge" data-title="git_merge" id="git_merge_git_merge11" class="slide center" data-transition="none">
+<div class="content center" ref="git_merge/git_merge:11">
+<p><img src="./file/git_merge/GitMerge10.png" width="1024" height="750"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_merge" data-title="git_merge" id="git_merge_git_merge12" class="slide center" data-transition="none">
+<div class="content center" ref="git_merge/git_merge:12">
+<p><img src="./file/git_merge/GitMerge11.png" width="1024" height="750"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_merge" data-title="git_merge" id="git_merge_git_merge13" class="slide center" data-transition="none">
+<div class="content center" ref="git_merge/git_merge:13">
+<h3>We'll talk about workflows with "git merge" later on</h3>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_rebase" data-title="git_rebase" id="git_rebase_git_rebase1" class="slide center" data-transition="none">
+<div class="content center" ref="git_rebase/git_rebase:1">
+<p><img src="./file/git_rebase/GitRebase.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_rebase" data-title="git_rebase" id="git_rebase_git_rebase2" class="slide center" data-transition="none">
+<div class="content center" ref="git_rebase/git_rebase:2">
+<p><img src="./file/git_rebase/GitRebase1.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_rebase" data-title="git_rebase" id="git_rebase_git_rebase3" class="slide center" data-transition="none">
+<div class="content center" ref="git_rebase/git_rebase:3">
+<p><img src="./file/git_rebase/GitRebase2.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_rebase" data-title="git_rebase" id="git_rebase_git_rebase4" class="slide center" data-transition="none">
+<div class="content center" ref="git_rebase/git_rebase:4">
+<p><img src="./file/git_rebase/GitRebase3.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_rebase" data-title="git_rebase" id="git_rebase_git_rebase5" class="slide center" data-transition="none">
+<div class="content center" ref="git_rebase/git_rebase:5">
+<p><img src="./file/git_rebase/GitRebase4.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_rebase" data-title="git_rebase" id="git_rebase_git_rebase6" class="slide center" data-transition="none">
+<div class="content center" ref="git_rebase/git_rebase:6">
+<p><img src="./file/git_rebase/GitRebase5.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_rebase" data-title="git_rebase" id="git_rebase_git_rebase7" class="slide center" data-transition="none">
+<div class="content center" ref="git_rebase/git_rebase:7">
+<p><img src="./file/git_rebase/GitRebase6.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_rebase" data-title="git_rebase" id="git_rebase_git_rebase8" class="slide center" data-transition="none">
+<div class="content center" ref="git_rebase/git_rebase:8">
+<p><img src="./file/git_rebase/GitRebase7.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_rebase" data-title="git_rebase" id="git_rebase_git_rebase9" class="slide center" data-transition="none">
+<div class="content center" ref="git_rebase/git_rebase:9">
+<p><img src="./file/git_rebase/GitRebase8.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_rebase" data-title="git_rebase" id="git_rebase_git_rebase10" class="slide center" data-transition="none">
+<div class="content center" ref="git_rebase/git_rebase:10">
+<p><img src="./file/git_rebase/GitRebase9.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_rebase" data-title="git_rebase" id="git_rebase_git_rebase11" class="slide center" data-transition="none">
+<div class="content center" ref="git_rebase/git_rebase:11">
+<p><img src="./file/git_rebase/GitRebase10.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_rebase" data-title="git_rebase" id="git_rebase_git_rebase12" class="slide center" data-transition="none">
+<div class="content center" ref="git_rebase/git_rebase:12">
+<p><img src="./file/git_rebase/GitRebase11.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_rebase" data-title="git_rebase" id="git_rebase_git_rebase13" class="slide center" data-transition="none">
+<div class="content center" ref="git_rebase/git_rebase:13">
+<p><img src="./file/git_rebase/GitRebase12.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_rebase" data-title="git_rebase" id="git_rebase_git_rebase14" class="slide center" data-transition="none">
+<div class="content center" ref="git_rebase/git_rebase:14">
+<p><img src="./file/git_rebase/GitRebase13.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_rebase" data-title="git_rebase" id="git_rebase_git_rebase15" class="slide center" data-transition="none">
+<div class="content center" ref="git_rebase/git_rebase:15">
+<p><img src="./file/git_rebase/GitRebase14.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_tag" data-title="git_tag" id="git_tag_git_tag1" class="slide center" data-transition="none">
+<div class="content center" ref="git_tag/git_tag:1">
+<p><img src="./file/git_tag/GitTag.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_tag" data-title="git_tag" id="git_tag_git_tag2" class="slide center" data-transition="none">
+<div class="content center" ref="git_tag/git_tag:2">
+<p><img src="./file/git_tag/GitTag1.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_tag" data-title="git_tag" id="git_tag_git_tag3" class="slide center" data-transition="none">
+<div class="content center" ref="git_tag/git_tag:3">
+<p><img src="./file/git_tag/GitTag2.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_tag" data-title="git_tag" id="git_tag_git_tag4" class="slide center" data-transition="none">
+<div class="content center" ref="git_tag/git_tag:4">
+<p><img src="./file/git_tag/GitTag3.png" width="1024" height="740"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_tag" data-title="git_tag" id="git_tag_git_tag5" class="slide center" data-transition="none">
+<div class="content center" ref="git_tag/git_tag:5">
+<p><img src="./file/git_tag/GitTag4.png" width="1024" height="740"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_tag" data-title="git_tag" id="git_tag_git_tag6" class="slide center" data-transition="none">
+<div class="content center" ref="git_tag/git_tag:6">
+<p><img src="./file/git_tag/GitTag5.png" width="1024" height="740"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_tag" data-title="git_tag" id="git_tag_git_tag7" class="slide center" data-transition="none">
+<div class="content center" ref="git_tag/git_tag:7">
+<p><img src="./file/git_tag/GitTag6.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_tag" data-title="git_tag" id="git_tag_git_tag8" class="slide center" data-transition="none">
+<div class="content center" ref="git_tag/git_tag:8">
+<p><img src="./file/git_tag/GitTag7.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_tag" data-title="git_tag" id="git_tag_git_tag9" class="slide center" data-transition="none">
+<div class="content center" ref="git_tag/git_tag:9">
+<p><img src="./file/git_tag/GitTag8.png" width="1024" height="745"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_tag" data-title="git_tag" id="git_tag_git_tag10" class="slide center" data-transition="none">
+<div class="content center" ref="git_tag/git_tag:10">
+<p><img src="./file/git_tag/GitTag9.png" width="1024" height="750"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_push" data-title="git_push" id="git_push_git_push1" class="slide center" data-transition="none">
+<div class="content center" ref="git_push/git_push:1">
+<p><img src="./file/git_push/GitPush.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_push" data-title="git_push" id="git_push_git_push2" class="slide commandline incremental" data-transition="none">
+<div class="content commandline incremental" ref="git_push/git_push:2">
+<pre><code><code class="command">$ git remote</code>
+<code class="result">public
+</code><code class="command">$ git remote show public</code>
+<code class="result">* remote public
+  URL: git@github.com:jmeridth/console_app.git
+  Tracked remote branches
+    master
+</code><code class="command">$ git push public master</code>
+<code class="result">Counting objects: 7, done.
+Compressing objects: 100% (3/3), done
+Writing objects: 100% (4/4/), 365 bytes, done.
+Total 4 (delta 2), reused 0 (delta 0)
+refs/heads/master: f40831985e265eb8cca2d0e66c11ac48ccfe170d -&gt;
+fc62e5543b195f18391886b9f663d5a7eca38e84
+To git@github.com:jmeridth/console_app.git
+  f408319..fc62e55 master -&gt; master
+</code></code></pre>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="review" data-title="review" id="review_review1" class="slide bullets incremental small" data-transition="none">
+<div class="content bullets incremental small" ref="review/review:1">
+<h2><strong>Local Commands</strong></h2>
+
+<ul>
+<li>git config</li>
+<li>git init</li>
+<li>git add</li>
+<li>git commit</li>
+<li>git status</li>
+<li>git tag</li>
+<li>git log</li>
+</ul>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="review" data-title="review" id="review_review2" class="slide bullets incremental" data-transition="none">
+<div class="content bullets incremental" ref="review/review:2">
+<h2><strong>Branchy Commands</strong></h2>
+
+<ul>
+<li>git checkout</li>
+<li>git branch</li>
+<li>git merge</li>
+<li>git rebase</li>
+</ul>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="review" data-title="review" id="review_review3" class="slide bullets incremental" data-transition="none">
+<div class="content bullets incremental" ref="review/review:3">
+<h2><strong>Remotey Commands</strong></h2>
+
+<ul>
+<li>git remote</li>
+<li>git fetch</li>
+<li>git pull</li>
+<li>git clone</li>
+<li>git push</li>
+</ul>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_branch_deep_dive" data-title="git_branch_deep_dive" id="git_branch_deep_dive_git_branch_deep_dive1" class="slide center" data-transition="none">
+<div class="content center" ref="git_branch_deep_dive/git_branch_deep_dive:1">
+<p><img src="./file/git_branch_deep_dive/GitBranch.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_branch_deep_dive" data-title="git_branch_deep_dive" id="git_branch_deep_dive_git_branch_deep_dive2" class="slide center" data-transition="none">
+<div class="content center" ref="git_branch_deep_dive/git_branch_deep_dive:2">
+<h1>What is a branch in Git?</h1>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_branch_deep_dive" data-title="git_branch_deep_dive" id="git_branch_deep_dive_git_branch_deep_dive3" class="slide center" data-transition="none">
+<div class="content center" ref="git_branch_deep_dive/git_branch_deep_dive:3">
+<h1>Whoa.  Lets talk internals first, then branches</h1>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_branch_deep_dive" data-title="git_branch_deep_dive" id="git_branch_deep_dive_git_branch_deep_dive4" class="slide center" data-transition="none">
+<div class="content center" ref="git_branch_deep_dive/git_branch_deep_dive:4">
+<p><img src="./file/git_branch_deep_dive/GitBlob.png" alt="GitBlob"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_branch_deep_dive" data-title="git_branch_deep_dive" id="git_branch_deep_dive_git_branch_deep_dive5" class="slide center" data-transition="none">
+<div class="content center" ref="git_branch_deep_dive/git_branch_deep_dive:5">
+<p><img src="./file/git_branch_deep_dive/GitTree.png" alt="GitTree"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_branch_deep_dive" data-title="git_branch_deep_dive" id="git_branch_deep_dive_git_branch_deep_dive6" class="slide center" data-transition="none">
+<div class="content center" ref="git_branch_deep_dive/git_branch_deep_dive:6">
+<p><img src="./file/git_branch_deep_dive/GitCommitObject.png" alt="GitCommitObject"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_branch_deep_dive" data-title="git_branch_deep_dive" id="git_branch_deep_dive_git_branch_deep_dive7" class="slide center" data-transition="none">
+<div class="content center" ref="git_branch_deep_dive/git_branch_deep_dive:7">
+<p><img src="./file/git_branch_deep_dive/GitTag.png" alt="GitTag"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_branch_deep_dive" data-title="git_branch_deep_dive" id="git_branch_deep_dive_git_branch_deep_dive8" class="slide commandline incremental" data-transition="none">
+<div class="content commandline incremental" ref="git_branch_deep_dive/git_branch_deep_dive:8">
+<pre><code><code class="command">$ awesome&gt;ls</code>
+<code class="result">.
+|-- README
+`-- lib
+    |-- inc
+    | `-- tricks.rb
+    `-- mylib.rb
+</code></code></pre>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_branch_deep_dive" data-title="git_branch_deep_dive" id="git_branch_deep_dive_git_branch_deep_dive9" class="slide commandline" data-transition="none">
+<div class="content commandline" ref="git_branch_deep_dive/git_branch_deep_dive:9">
+<pre><code><code class="command">$ awesome&gt;ls</code>
+<code class="result">.
+|-- README
+`-- lib (directory)
+    |-- inc (directory)
+    | `-- tricks.rb
+    `-- mylib.rb
+2 directories
+</code></code></pre>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_branch_deep_dive" data-title="git_branch_deep_dive" id="git_branch_deep_dive_git_branch_deep_dive10" class="slide commandline" data-transition="none">
+<div class="content commandline" ref="git_branch_deep_dive/git_branch_deep_dive:10">
+<pre><code><code class="command">$ awesome&gt;ls</code>
+<code class="result">.
+|-- README (file)
+`-- lib
+    |-- inc
+    | `-- tricks.rb (file)
+    `-- mylib.rb (file)
+3 files
+</code></code></pre>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_branch_deep_dive" data-title="git_branch_deep_dive" id="git_branch_deep_dive_git_branch_deep_dive11" class="slide center" data-transition="none">
+<div class="content center" ref="git_branch_deep_dive/git_branch_deep_dive:11">
+<p><img src="./file/git_branch_deep_dive/GitInternalsExample.png" alt="GitInternalsExample"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_branch_deep_dive" data-title="git_branch_deep_dive" id="git_branch_deep_dive_git_branch_deep_dive12" class="slide center" data-transition="none">
+<div class="content center" ref="git_branch_deep_dive/git_branch_deep_dive:12">
+<p><img src="./file/git_branch_deep_dive/GitSnapshots.png" alt="GitSnapshots"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_branch_deep_dive" data-title="git_branch_deep_dive" id="git_branch_deep_dive_git_branch_deep_dive13" class="slide center" data-transition="none">
+<div class="content center" ref="git_branch_deep_dive/git_branch_deep_dive:13">
+<h1>A branch is a lightweight movable pointer (to a commit)</h1>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_branch_deep_dive" data-title="git_branch_deep_dive" id="git_branch_deep_dive_git_branch_deep_dive14" class="slide center" data-transition="none">
+<div class="content center" ref="git_branch_deep_dive/git_branch_deep_dive:14">
+<p><img src="./file/git_branch_deep_dive/GitBranch1.png" alt="GitBranch1"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_branch_deep_dive" data-title="git_branch_deep_dive" id="git_branch_deep_dive_git_branch_deep_dive15" class="slide center" data-transition="none">
+<div class="content center" ref="git_branch_deep_dive/git_branch_deep_dive:15">
+<p><img src="./file/git_branch_deep_dive/GitBranch2.png" alt="GitBranch2"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_branch_deep_dive" data-title="git_branch_deep_dive" id="git_branch_deep_dive_git_branch_deep_dive16" class="slide center" data-transition="none">
+<div class="content center" ref="git_branch_deep_dive/git_branch_deep_dive:16">
+<p><img src="./file/git_branch_deep_dive/GitBranch3.png" alt="GitBranch3"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_branch_deep_dive" data-title="git_branch_deep_dive" id="git_branch_deep_dive_git_branch_deep_dive17" class="slide center" data-transition="none">
+<div class="content center" ref="git_branch_deep_dive/git_branch_deep_dive:17">
+<p><img src="./file/git_branch_deep_dive/GitBranch4.png" alt="GitBranch4"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_branch_deep_dive" data-title="git_branch_deep_dive" id="git_branch_deep_dive_git_branch_deep_dive18" class="slide center" data-transition="none">
+<div class="content center" ref="git_branch_deep_dive/git_branch_deep_dive:18">
+<p><img src="./file/git_branch_deep_dive/GitBranch5.png" alt="GitBranch5"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_branch_deep_dive" data-title="git_branch_deep_dive" id="git_branch_deep_dive_git_branch_deep_dive19" class="slide center" data-transition="none">
+<div class="content center" ref="git_branch_deep_dive/git_branch_deep_dive:19">
+<p><img src="./file/git_branch_deep_dive/GitBranch6.png" alt="GitBranch6"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_branch_deep_dive" data-title="git_branch_deep_dive" id="git_branch_deep_dive_git_branch_deep_dive20" class="slide center" data-transition="none">
+<div class="content center" ref="git_branch_deep_dive/git_branch_deep_dive:20">
+<p><img src="./file/git_branch_deep_dive/GitBranch7.png" alt="GitBranch7"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_branch_deep_dive" data-title="git_branch_deep_dive" id="git_branch_deep_dive_git_branch_deep_dive21" class="slide center" data-transition="none">
+<div class="content center" ref="git_branch_deep_dive/git_branch_deep_dive:21">
+<p><img src="./file/git_branch_deep_dive/GitBranch8.png" alt="GitBranch8"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_branch_deep_dive" data-title="git_branch_deep_dive" id="git_branch_deep_dive_git_branch_deep_dive22" class="slide center" data-transition="none">
+<div class="content center" ref="git_branch_deep_dive/git_branch_deep_dive:22">
+<p><img src="./file/git_branch_deep_dive/GitBranch9.png" alt="GitBranch9"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_branch_deep_dive" data-title="git_branch_deep_dive" id="git_branch_deep_dive_git_branch_deep_dive23" class="slide center" data-transition="none">
+<div class="content center" ref="git_branch_deep_dive/git_branch_deep_dive:23">
+<p><img src="./file/git_branch_deep_dive/GitBranch10.png" alt="GitBranch10"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_branch_deep_dive" data-title="git_branch_deep_dive" id="git_branch_deep_dive_git_branch_deep_dive24" class="slide center" data-transition="none">
+<div class="content center" ref="git_branch_deep_dive/git_branch_deep_dive:24">
+<p><img src="./file/git_branch_deep_dive/GitBranch11.png" alt="GitBranch11"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_branch_deep_dive" data-title="git_branch_deep_dive" id="git_branch_deep_dive_git_branch_deep_dive25" class="slide center" data-transition="none">
+<div class="content center" ref="git_branch_deep_dive/git_branch_deep_dive:25">
+<p><img src="./file/git_branch_deep_dive/GitBranch12.png" alt="GitBranch12"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_branch_deep_dive" data-title="git_branch_deep_dive" id="git_branch_deep_dive_git_branch_deep_dive26" class="slide center" data-transition="none">
+<div class="content center" ref="git_branch_deep_dive/git_branch_deep_dive:26">
+<p><img src="./file/git_branch_deep_dive/GitBranch13.png" alt="GitBranch13"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_remote_deep_dive" data-title="git_remote_deep_dive" id="git_remote_deep_dive_git_remote_deep_dive1" class="slide center" data-transition="none">
+<div class="content center" ref="git_remote_deep_dive/git_remote_deep_dive:1">
+<p><img src="./file/git_remote_deep_dive/GitRemote.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_remote_deep_dive" data-title="git_remote_deep_dive" id="git_remote_deep_dive_git_remote_deep_dive2" class="slide center" data-transition="none">
+<div class="content center" ref="git_remote_deep_dive/git_remote_deep_dive:2">
+<h1>Remote Branches</h1>
+
+<h3>"Remote branches are references to the state of branches on your remote repositories. Theyre local branches that you cant move. Theyre moved automatically whenever you do any network communication. Remote branches act as bookmarks to remind you where the branches on your remote repositories were the last time you connected to them... They take the form (remote)/(branch)" Chapter 3 sect. 5 Pro Git Book</h3>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_remote_deep_dive" data-title="git_remote_deep_dive" id="git_remote_deep_dive_git_remote_deep_dive3" class="slide center" data-transition="none">
+<div class="content center" ref="git_remote_deep_dive/git_remote_deep_dive:3">
+<p><img src="./file/git_remote_deep_dive/GitRemote1.png" alt="GitRemote1"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_remote_deep_dive" data-title="git_remote_deep_dive" id="git_remote_deep_dive_git_remote_deep_dive4" class="slide center" data-transition="none">
+<div class="content center" ref="git_remote_deep_dive/git_remote_deep_dive:4">
+<p><img src="./file/git_remote_deep_dive/GitRemote2.png" alt="GitRemote2"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_remote_deep_dive" data-title="git_remote_deep_dive" id="git_remote_deep_dive_git_remote_deep_dive5" class="slide center" data-transition="none">
+<div class="content center" ref="git_remote_deep_dive/git_remote_deep_dive:5">
+<p><img src="./file/git_remote_deep_dive/GitRemote3.png" alt="GitRemote3"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_remote_deep_dive" data-title="git_remote_deep_dive" id="git_remote_deep_dive_git_remote_deep_dive6" class="slide center" data-transition="none">
+<div class="content center" ref="git_remote_deep_dive/git_remote_deep_dive:6">
+<p><img src="./file/git_remote_deep_dive/GitRemote4.png" alt="GitRemote4"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_remote_deep_dive" data-title="git_remote_deep_dive" id="git_remote_deep_dive_git_remote_deep_dive7" class="slide center" data-transition="none">
+<div class="content center" ref="git_remote_deep_dive/git_remote_deep_dive:7">
+<p><img src="./file/git_remote_deep_dive/GitRemote5.png" alt="GitRemote5"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_workflows" data-title="0_git_workflows" id="git_workflows_0_git_workflows1" class="slide center" data-transition="none">
+<div class="content center" ref="git_workflows/0_git_workflows:1">
+<p><img src="./file/git_workflows/ThreeAmigos.jpg" alt="ThreeAmigos"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_workflows" data-title="0_git_workflows" id="git_workflows_0_git_workflows2" class="slide center" data-transition="none">
+<div class="content center" ref="git_workflows/0_git_workflows:2">
+<p><img src="./file/git_workflows/GitWorkflows1.png" alt="GitWorkflows1"></p>
+
+<h3>centralized</h3>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_workflows" data-title="0_git_workflows" id="git_workflows_0_git_workflows3" class="slide center" data-transition="none">
+<div class="content center" ref="git_workflows/0_git_workflows:3">
+<p><img src="./file/git_workflows/github.png" alt="Github">
+<br>
+<img src="./file/git_workflows/GitWorkflows2.png" alt="GitWorkflows2"></p>
+
+<h3>integration manager</h3>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_workflows" data-title="0_git_workflows" id="git_workflows_0_git_workflows4" class="slide center" data-transition="none">
+<div class="content center" ref="git_workflows/0_git_workflows:4">
+<p><img src="./file/git_workflows/GitWorkflows3.png" alt="GitWorkflows3"></p>
+
+<h3>dictator &amp; lieutenant</h3>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_workflows" data-title="0_git_workflows" id="git_workflows_0_git_workflows5" class="slide center" data-transition="none">
+<div class="content center" ref="git_workflows/0_git_workflows:5">
+<p><img src="./file/git_workflows/GitModel.png" width="375" height="500"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_workflows" data-title="merging_workflows" id="git_workflows_1_merging_workflows_merging_workflows1" class="slide center" data-transition="none">
+<div class="content center" ref="git_workflows/1_merging_workflows/merging_workflows:1">
+<p><img src="./file/git_workflows/1_merging_workflows/MergingWorkflows.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_workflows" data-title="merging_workflows" id="git_workflows_1_merging_workflows_merging_workflows2" class="slide center" data-transition="none">
+<div class="content center" ref="git_workflows/1_merging_workflows/merging_workflows:2">
+<p><img src="./file/git_workflows/1_merging_workflows/MergingWorkflows1.png" alt="MergingWorkflows1"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_workflows" data-title="merging_workflows" id="git_workflows_1_merging_workflows_merging_workflows3" class="slide center" data-transition="none">
+<div class="content center" ref="git_workflows/1_merging_workflows/merging_workflows:3">
+<p><img src="./file/git_workflows/1_merging_workflows/MergingWorkflows2.png" alt="MergingWorkflows2"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_workflows" data-title="merging_workflows" id="git_workflows_1_merging_workflows_merging_workflows4" class="slide center" data-transition="none">
+<div class="content center" ref="git_workflows/1_merging_workflows/merging_workflows:4">
+<p><img src="./file/git_workflows/1_merging_workflows/SquashedMerge.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_workflows" data-title="merging_workflows" id="git_workflows_1_merging_workflows_merging_workflows5" class="slide commandline incremental" data-transition="none">
+<div class="content commandline incremental" ref="git_workflows/1_merging_workflows/merging_workflows:5">
+<h2>merge squash</h2>
+
+<pre><code><code class="command">$ git checkout master</code>
+<code class="command">$ git merge --squash topic_branch</code>
+<code class="command">$ git merge --squash --no-commit topic_branch</code>
+</code></pre>
+
+<h2>pull squash</h2>
+
+<pre><code><code class="command">$ git checkout master</code>
+<code class="command">$ git pull --squash . topic_branch</code>
+</code></pre>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_workflows" data-title="rebasing_workflows" id="git_workflows_2_rebasing_workflows_rebasing_workflows1" class="slide center" data-transition="none">
+<div class="content center" ref="git_workflows/2_rebasing_workflows/rebasing_workflows:1">
+<p><img src="./file/git_workflows/2_rebasing_workflows/RebasingWorkflows.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_workflows" data-title="rebasing_workflows" id="git_workflows_2_rebasing_workflows_rebasing_workflows2" class="slide center" data-transition="none">
+<div class="content center" ref="git_workflows/2_rebasing_workflows/rebasing_workflows:2">
+<p><img src="./file/git_workflows/2_rebasing_workflows/RebasingWorkflows1.png" alt="RebasingWorkflows1"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_workflows" data-title="rebasing_workflows" id="git_workflows_2_rebasing_workflows_rebasing_workflows3" class="slide commandline center" data-transition="none">
+<div class="content commandline center" ref="git_workflows/2_rebasing_workflows/rebasing_workflows:3">
+<pre><code><code class="command">$ git checkout experiment</code>
+<code class="command">$ git rebase master</code>
+<code class="result">
+First, rewinding head to replay your work on top of it
+...
+Applying: added staged command
+</code></code></pre>
+
+<p><br><br>
+<img src="./file/git_workflows/2_rebasing_workflows/RebasingWorkflows2.png" alt="RebasingWorkflows2"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_workflows" data-title="rebasing_workflows" id="git_workflows_2_rebasing_workflows_rebasing_workflows4" class="slide center" data-transition="none">
+<div class="content center" ref="git_workflows/2_rebasing_workflows/rebasing_workflows:4">
+<p><img src="./file/git_workflows/2_rebasing_workflows/RebasingWorkflows3.png" alt="RebasingWorkflows3"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_workflows" data-title="rebasing_workflows" id="git_workflows_2_rebasing_workflows_rebasing_workflows5" class="slide center" data-transition="none">
+<div class="content center" ref="git_workflows/2_rebasing_workflows/rebasing_workflows:5">
+<p><img src="./file/git_workflows/2_rebasing_workflows/InteractiveRebase.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_workflows" data-title="rebasing_workflows" id="git_workflows_2_rebasing_workflows_rebasing_workflows6" class="slide center" data-transition="none">
+<div class="content center" ref="git_workflows/2_rebasing_workflows/rebasing_workflows:6">
+<h2>you have committed everything on your topic branch, multiple commits</h2>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_workflows" data-title="rebasing_workflows" id="git_workflows_2_rebasing_workflows_rebasing_workflows7" class="slide commandline incremental" data-transition="none">
+<div class="content commandline incremental" ref="git_workflows/2_rebasing_workflows/rebasing_workflows:7">
+<h2>get latest code onto master</h2>
+
+<pre><code><code class="command">$ git checkout master</code>
+<code class="command">$ git pull origin master</code>
+<code class="command">$ git checkout topic_branch</code>
+<code class="command">$ git rebase -i master</code>
+</code></pre>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_workflows" data-title="rebasing_workflows" id="git_workflows_2_rebasing_workflows_rebasing_workflows8" class="slide small" data-transition="none">
+<div class="content small" ref="git_workflows/2_rebasing_workflows/rebasing_workflows:8">
+<pre><code>pick fc62e55 added file_size
+pick 9824bf4 fixed little thing
+pick 21d80a5 added number to log
+pick 76b9da6 added the apply command
+pick c264051 Revert "added file_size" - not implemented correctly
+# Rebase f408319..b04dc3d onto f408319
+#
+# Commands:
+# p, pick = use commit
+# r, reword = use commit, but edit the commit message
+# e, edit = use commit, but stop for amending
+# s, squash = use commit, but meld into previous commit
+# f, fixup = use "squash", but discard this commit's log message
+#
+# If you remove a line here THAT COMMIT WILL BE LOST.
+# However, if you remove everything, the rebase will be aborted.
+#
+(action) (partial-sha) (short commit message)
+</code></pre>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_workflows" data-title="rebasing_workflows" id="git_workflows_2_rebasing_workflows_rebasing_workflows9" class="slide small" data-transition="none">
+<div class="content small" ref="git_workflows/2_rebasing_workflows/rebasing_workflows:9">
+<pre><code>pick fc62e55 added file_size
+squash 9824bf4 fixed little thing
+squash 21d80a5 added number to log
+squash 76b9da6 added the apply command
+squash c264051 Revert "added file_size" - not implemented correctly
+</code></pre>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_workflows" data-title="rebasing_workflows" id="git_workflows_2_rebasing_workflows_rebasing_workflows10" class="slide small" data-transition="none">
+<div class="content small" ref="git_workflows/2_rebasing_workflows/rebasing_workflows:10">
+<pre><code># This is a combination of 5 commits.
+# The first commit's message is:
+added file_size
+
+# This is the 2nd commit message:
+
+fixed little thing
+
+# This is the 3rd commit message:
+
+added number to log
+
+# This is the 4th commit message:
+
+added the apply command
+
+# This is the 5th commit message:
+
+Revert "added file_size" - not implemented correctly
+
+This reverts commit fc62e5543b195f18391886b9f663d5a7eca38e84.
+</code></pre>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_workflows" data-title="rebasing_workflows" id="git_workflows_2_rebasing_workflows_rebasing_workflows11" class="slide small" data-transition="none">
+<div class="content small" ref="git_workflows/2_rebasing_workflows/rebasing_workflows:11">
+<pre><code># This is a combination of 5 commits.
+# The first commit's message is:
+the best darn tootin commit message ever
+</code></pre>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_workflows" data-title="rebasing_workflows" id="git_workflows_2_rebasing_workflows_rebasing_workflows12" class="slide center" data-transition="none">
+<div class="content center" ref="git_workflows/2_rebasing_workflows/rebasing_workflows:12">
+<h1>Do not rebase commits that you have pushed to a public repository.</h1>
+
+<p><br><br></p>
+
+<h3><a href="http://progit.org/book/ch3-6.html" target="_blank">Example</a></h3>
+
+<p><br><br></p>
+
+<h3><a href="http://www.kernel.org/pub/software/scm/git/docs/git-rebase.html" target="_blank">Fix</a></h3>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_workflows" data-title="cherry_picking" id="git_workflows_3_cherry_picking_cherry_picking1" class="slide center" data-transition="none">
+<div class="content center" ref="git_workflows/3_cherry_picking/cherry_picking:1">
+<p><img src="./file/git_workflows/3_cherry_picking/GitCherryPicking.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_workflows" data-title="cherry_picking" id="git_workflows_3_cherry_picking_cherry_picking2" class="slide center" data-transition="none">
+<div class="content center" ref="git_workflows/3_cherry_picking/cherry_picking:2">
+<p><a href="http://www.gitready.com/intermediate/2009/03/04/pick-out-individual-commits.html" target="_blank">http://www.gitready.com/intermediate/2009/03/04/pick-out-individual-commits.html</a>
+<br><br>
+<img src="./file/git_workflows/3_cherry_picking/GitCherryPicking1.png" alt="GitCherryPicking1"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_workflows" data-title="cherry_picking" id="git_workflows_3_cherry_picking_cherry_picking3" class="slide small" data-transition="none">
+<div class="content small" ref="git_workflows/3_cherry_picking/cherry_picking:3">
+<pre>
+$ git cherry-pick b50788b
+Finished one cherry-pick.
+[master]: created bcb0d1b: "First pass at rake
+task."
+    3 files changed, 63 insertions(+), 3 deletions(-)
+    create mode 100644 lib/jekyll/task.rb
+
+$ git log --pretty=oneline --abbrev-commit
+HEAD~3..HEAD
+bcb0d1b... First pass at rake task.
+2569e9f... update history
+2135a53... Using block syntax of popen4 to ensure
+that subprocesses...
+</pre>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_workflows" data-title="cherry_picking" id="git_workflows_3_cherry_picking_cherry_picking4" class="slide small" data-transition="none">
+<div class="content small" ref="git_workflows/3_cherry_picking/cherry_picking:4">
+<pre>
+$ git cherry-pick <span class="blue">b50788b</span>
+Finished one cherry-pick.
+[master]: created <span class="blue">bcb0d1b</span>: "First pass at rake
+task."
+    3 files changed, 63 insertions(+), 3 deletions(-)
+    create mode 100644 lib/jekyll/task.rb
+
+$ git log --pretty=oneline --abbrev-commit
+HEAD~3..HEAD
+bcb0d1b... First pass at rake task.
+2569e9f... update history
+2135a53... Using block syntax of popen4 to ensure
+that subprocesses...
+</pre>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_workflows" data-title="cherry_picking" id="git_workflows_3_cherry_picking_cherry_picking5" class="slide center" data-transition="none">
+<div class="content center" ref="git_workflows/3_cherry_picking/cherry_picking:5">
+<p><a href="http://www.gitready.com/intermediate/2009/03/04/pick-out-individual-commits.html" target="_blank">http://www.gitready.com/intermediate/2009/03/04/pick-out-individual-commits.html</a>
+<br><br>
+<img src="./file/git_workflows/3_cherry_picking/GitCherryPicking2.png" alt="GitCherryPicking2"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_workflows" data-title="personal_day" id="git_workflows_4_personal_day_personal_day1" class="slide center" data-transition="none">
+<div class="content center" ref="git_workflows/4_personal_day/personal_day:1">
+<h1>My Personal Day-to-Day Work Workflow</h1>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_workflows" data-title="personal_day" id="git_workflows_4_personal_day_personal_day2" class="slide commandline incremental" data-transition="none">
+<div class="content commandline incremental" ref="git_workflows/4_personal_day/personal_day:2">
+<pre><code><code class="command">$ git pull origin master</code>
+<code class="command">$ git checkout -b T22</code>
+<code class="result">
+</code><code class="command">$ ### REPEAT THE FOLLOWING</code>
+<code class="command">$ vim spec_file.rb</code>
+<code class="command">$ vim file.rb</code>
+<code class="command">$ rake spec</code>
+<code class="command">$ git commit -am "meh, blah, blah"</code>
+<code class="result">
+</code><code class="command">$ git checkout master</code>
+<code class="command">$ git pull origin master</code>
+<code class="command">$ git checkout T22</code>
+<code class="command">$ git rebase -i master</code>
+<code class="command">$ ### choose squash action</code>
+<code class="command">$ ### edit commit messages to single message</code>
+<code class="command">$ git checkout master</code>
+<code class="command">$ git merge T22</code>
+</code></pre>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_workflows" data-title="production_bug" id="git_workflows_5_production_bug_production_bug1" class="slide center" data-transition="none">
+<div class="content center" ref="git_workflows/5_production_bug/production_bug:1">
+<p><img src="./file/git_workflows/5_production_bug/ProductionBug.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_workflows" data-title="production_bug" id="git_workflows_5_production_bug_production_bug2" class="slide commandline incremental" data-transition="none">
+<div class="content commandline incremental" ref="git_workflows/5_production_bug/production_bug:2">
+<h1>if you are in the middle of working</h1>
+
+<pre><code><code class="command">$ git stash</code>
+<code class="command">$ ### OR</code>
+<code class="command">$ git commit -am "pause for production bug"</code>
+</code></pre>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_workflows" data-title="production_bug" id="git_workflows_5_production_bug_production_bug3" class="slide commandline incremental" data-transition="none">
+<div class="content commandline incremental" ref="git_workflows/5_production_bug/production_bug:3">
+<h1>create local hotfix branch with latest remote master content</h1>
+
+<pre><code><code class="command">$ git checkout master</code>
+<code class="command">$ git fetch origin master</code>
+<code class="command">$ git checkout -b hotfix origin/master</code>
+<code class="command">$ ### fix bug, multiple commits, passing tests</code>
+</code></pre>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_workflows" data-title="production_bug" id="git_workflows_5_production_bug_production_bug4" class="slide commandline incremental" data-transition="none">
+<div class="content commandline incremental" ref="git_workflows/5_production_bug/production_bug:4">
+<pre><code><code class="command">$ git checkout master &amp;&amp; git pull origin master</code>
+<code class="command">$ git checkout hotfix</code>
+<code class="command">$ git rebase -i master</code>
+<code class="command">$ ### squash commits into one with one nice message</code>
+<code class="command">$ git checkout master</code>
+<code class="command">$ git merge hotfix</code>
+<code class="command">$ ### fast-forward merge</code>
+<code class="command">$ git push origin master</code>
+</code></pre>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_workflows" data-title="production_bug" id="git_workflows_5_production_bug_production_bug5" class="slide commandline incremental" data-transition="none">
+<div class="content commandline incremental" ref="git_workflows/5_production_bug/production_bug:5">
+<pre><code><code class="command">$ git fetch origin production</code>
+<code class="command">$ git checkout -b prod origin/production</code>
+<code class="command">$ git cherry-pick &lt;sha-1 of recent commit&gt;</code>
+<code class="command">$ rake spec</code>
+<code class="command">$ git tag -a hotfix_tag</code>
+<code class="command">$ git push origin production</code>
+<code class="command">$ git push origin hotfix_tag</code>
+</code></pre>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="git_workflows" data-title="production_bug" id="git_workflows_5_production_bug_production_bug6" class="slide" data-transition="none">
+<div class="content " ref="git_workflows/5_production_bug/production_bug:6">
+<h1>deploy production branch/tag from git server</h1>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="cleanup_rollback" data-title="cleanup_rollback" id="cleanup_rollback_cleanup_rollback1" class="slide center" data-transition="none">
+<div class="content center" ref="cleanup_rollback/cleanup_rollback:1">
+<p><img src="./file/cleanup_rollback/mike_rowe_dirty_jobs.jpg" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="cleanup_rollback" data-title="cleanup_rollback" id="cleanup_rollback_cleanup_rollback2" class="slide center" data-transition="none">
+<div class="content center" ref="cleanup_rollback/cleanup_rollback:2">
+<h3>Git reset, checkout &amp; “bare double dash”, and revert</h3>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="cleanup_rollback" data-title="cleanup_rollback" id="cleanup_rollback_cleanup_rollback3" class="slide commandline incremental" data-transition="none">
+<div class="content commandline incremental" ref="cleanup_rollback/cleanup_rollback:3">
+<pre><code><code class="command">$ ### to unstage a file ###</code>
+<code class="command">$ git reset HEAD &lt;filename&gt;</code>
+<code class="result">
+</code><code class="command">$ ### another option ###</code>
+<code class="command">$ git reset HEAD &lt;filename&gt;</code>
+<code class="command">$ git config --global alias.unstage 'reset HEAD'</code>
+<code class="command">$ git unstage README</code>
+<code class="result">
+</code><code class="command">$ ### to clean out your working directory ###</code>
+<code class="command">$ git reset --hard</code>
+</code></pre>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="cleanup_rollback" data-title="cleanup_rollback" id="cleanup_rollback_cleanup_rollback4" class="slide commandline incremental" data-transition="none">
+<div class="content commandline incremental" ref="cleanup_rollback/cleanup_rollback:4">
+<pre><code><code class="command">$ ### to rollback uncommitted/staged files(s) ###</code>
+<code class="command">$ git checkout -- &lt;filename(s)&gt;</code>
+</code></pre>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="cleanup_rollback" data-title="cleanup_rollback" id="cleanup_rollback_cleanup_rollback5" class="slide commandline incremental" data-transition="none">
+<div class="content commandline incremental" ref="cleanup_rollback/cleanup_rollback:5">
+<pre><code><code class="command">$ ### undo a pushed commit ###</code>
+<code class="command">$ git revert &lt;SHA1&gt;</code>
+<code class="command">$ git revert HEAD</code>
+<code class="command">$ git revert HEAD^</code>
+<code class="command">$ git revert f7c7dd34</code>
+</code></pre>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="cleanup_rollback" data-title="cleanup_rollback" id="cleanup_rollback_cleanup_rollback6" class="slide commandline incremental" data-transition="none">
+<div class="content commandline incremental" ref="cleanup_rollback/cleanup_rollback:6">
+<pre><code><code class="command">$ ### fixing the last commit message that has not been pushed ###</code>
+<code class="command">$ git commit --amend</code>
+</code></pre>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="cleanup_rollback" data-title="cleanup_rollback" id="cleanup_rollback_cleanup_rollback7" class="slide commandline incremental" data-transition="none">
+<div class="content commandline incremental" ref="cleanup_rollback/cleanup_rollback:7">
+<pre><code><code class="command">$ ### fixing commit message of commit more than 1 commit ago  ###</code>
+<code class="command">$ git rebase -i HEAD~3</code>
+<code class="command">$ ### choose edit for the one you want to change ###</code>
+</code></pre>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="resources" data-title="resources" id="resources_resources1" class="slide center" data-transition="none">
+<div class="content center" ref="resources/resources:1">
+<h1>Resources</h1>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="resources" data-title="resources" id="resources_resources2" class="slide center" data-transition="none">
+<div class="content center" ref="resources/resources:2">
+<p><img src="./file/resources/Resources.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="resources" data-title="resources" id="resources_resources3" class="slide center" data-transition="none">
+<div class="content center" ref="resources/resources:3">
+<h1>#git / #github on IRC</h1>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="resources" data-title="resources" id="resources_resources4" class="slide center" data-transition="none">
+<div class="content center" ref="resources/resources:4">
+<p><img src="./file/resources/Resources1.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="resources" data-title="resources" id="resources_resources5" class="slide center" data-transition="none">
+<div class="content center" ref="resources/resources:5">
+<p><img src="./file/resources/Resources2.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="resources" data-title="resources" id="resources_resources6" class="slide center" data-transition="none">
+<div class="content center" ref="resources/resources:6">
+<p><img src="./file/resources/Resources3.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="resources" data-title="resources" id="resources_resources7" class="slide center" data-transition="none">
+<div class="content center" ref="resources/resources:7">
+<p><img src="./file/resources/Resources4.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="resources" data-title="resources" id="resources_resources8" class="slide center" data-transition="none">
+<div class="content center" ref="resources/resources:8">
+<p><img src="./file/resources/Resources5.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="resources" data-title="resources" id="resources_resources9" class="slide center" data-transition="none">
+<div class="content center" ref="resources/resources:9">
+<p><img src="./file/resources/Resources6.jpg" alt="Resources6"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="resources" data-title="resources" id="resources_resources10" class="slide center" data-transition="none">
+<div class="content center" ref="resources/resources:10">
+<p><img src="./file/resources/Resources7.jpg" alt="Resources7"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="resources" data-title="resources" id="resources_resources11" class="slide center" data-transition="none">
+<div class="content center" ref="resources/resources:11">
+<p><img src="./file/resources/Resources8.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="resources" data-title="resources" id="resources_resources12" class="slide center" data-transition="none">
+<div class="content center" ref="resources/resources:12">
+<p><img src="./file/resources/Resources9.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="resources" data-title="resources" id="resources_resources13" class="slide center" data-transition="none">
+<div class="content center" ref="resources/resources:13">
+<p><img src="./file/resources/Resources10.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="resources" data-title="resources" id="resources_resources14" class="slide center" data-transition="none">
+<div class="content center" ref="resources/resources:14">
+<p><img src="./file/resources/Resources11.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="resources" data-title="resources" id="resources_resources15" class="slide center" data-transition="none">
+<div class="content center" ref="resources/resources:15">
+<p><img src="./file/resources/Resources12.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="resources" data-title="resources" id="resources_resources16" class="slide small" data-transition="none">
+<div class="content small" ref="resources/resources:16">
+<h1>Credits</h1>
+
+<p><br></p>
+
+<h4>IMAGES</h4>
+
+<h4><a href="http://andyjeffries.co.uk/uploads/articles/33/view_git-logo.png" target="_blank">http://andyjeffries.co.uk/uploads/articles/33/view_git-logo.png</a></h4>
+
+<h4><a href="http://blog.nodeta.fi/wp-content/uploads/2009/07/git-branching.jpg" target="_blank">http://blog.nodeta.fi/wp-content/uploads/2009/07/git-branching.jpg</a></h4>
+
+<h4><a href="http://lh5.ggpht.com/_0bryoDBVh14/SaiMJc039YI/AAAAAAAAAMo/cgBE51F9jos/s400/three_amigos_ver2-770439.jpg" target="_blank">http://lh5.ggpht.com/_0bryoDBVh14/SaiMJc039YI/AAAAAAAAAMo/cgBE51F9jos/s400/three_amigos_ver2-770439.jpg</a></h4>
+
+<h4>
+<a href="http://progit.org/" target="_blank">http://progit.org/</a> (images)</h4>
+
+<h4>
+<a href="http://book.git-scm.com" target="_blank">http://book.git-scm.com</a> (images)</h4>
+
+<h4><a href="http://commune.s3.amazonaws.com/uploaded/cusp/site/github.png" target="_blank">http://commune.s3.amazonaws.com/uploaded/cusp/site/github.png</a></h4>
+
+<h4><a href="http://antonlindstrom.com/public/graphic/octocat_stroked.png" target="_blank">http://antonlindstrom.com/public/graphic/octocat_stroked.png</a></h4>
+
+<h4><a href="http://progit.org/figures/ch4/18333fig0401-tn.png" target="_blank">http://progit.org/figures/ch4/18333fig0401-tn.png</a></h4>
+
+<h4><a href="http://upload.wikimedia.org/wikipedia/en/9/93/Gitorious.png" target="_blank">http://upload.wikimedia.org/wikipedia/en/9/93/Gitorious.png</a></h4>
+
+<h4><a href="http://www.stoppress.co.nz/wp-content/uploads/2010/01/Merge-main_Full.jpg" target="_blank">http://www.stoppress.co.nz/wp-content/uploads/2010/01/Merge-main_Full.jpg</a></h4>
+
+<h4><a href="http://rubyrags.com/pictures/0000/0097/rebase.png?1219366613" target="_blank">http://rubyrags.com/pictures/0000/0097/rebase.png?1219366613</a></h4>
+
+<h4><a href="http://www.aim-hq.org/Toolbox.jpg" target="_blank">http://www.aim-hq.org/Toolbox.jpg</a></h4>
+
+<h4><a href="http://theacademy.sdsu.edu/programs/BHETA/laptop-guy.jpg" target="_blank">http://theacademy.sdsu.edu/programs/BHETA/laptop-guy.jpg</a></h4>
+
+<h4><a href="http://farm4.static.flickr.com/3120/3174148419_51d09db6e5.jpg" target="_blank">http://farm4.static.flickr.com/3120/3174148419_51d09db6e5.jpg</a></h4>
+
+<h4><a href="http://www.flickr.com/photos/waltjabsco/2767960923/sizes/o/" target="_blank">http://www.flickr.com/photos/waltjabsco/2767960923/sizes/o/</a></h4>
+
+<h4><a href="http://www.gitready.com/images/pick.png" target="_blank">http://www.gitready.com/images/pick.png</a></h4>
+
+<p><br></p>
+
+<h4>BOOKS</h4>
+
+<h4>Pro Git by Scott Chacon - <a href="http://progit.org/book/" target="_blank">http://progit.org/book/</a>
+</h4>
+
+<h4>Git Community Book by Scott Chacon - <a href="http://book.git-scm.com" target="_blank">http://book.git-scm.com</a>
+</h4>
+
+<h4>Pragmatic Version Control Using Git by Travis Swicegood - <a href="http://www.pragprog.com/titles/tsgit/pragmatic-version-control-using-git" target="_blank">http://www.pragprog.com/titles/tsgit/pragmatic-version-control-using-git</a>
+</h4>
+
+<p><br></p>
+
+<h4>WEBSITES</h4>
+
+<h4><a href="http://progit.org/blog" target="_blank">http://progit.org/blog</a></h4>
+
+<h4><a href="http://gitready.com" target="_blank">http://gitready.com</a></h4>
+
+<h4><a href="http://help.github.com" target="_blank">http://help.github.com</a></h4>
+
+<h4><a href="http://learn.github.com" target="_blank">http://learn.github.com</a></h4>
+
+<p><br>
+Slide decks used with permission of Scott Chacon
+<a href="http://github.com/schacon/git-presentations" target="_blank">http://github.com/schacon/git-presentations</a></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+<div data-section="resources" data-title="resources" id="resources_resources17" class="slide center" data-transition="none">
+<div class="content center" ref="resources/resources:17">
+<p><img src="./file/resources/Resources13.png" width="1024" height="768"></p>
+</div>
+<canvas class="annotations"></canvas>
+</div>
+</div>
+<div id="buttonNav">
+  <div id="buttonPrev"><i class="fa fa-chevron-left fa-lg"></i> Previous</div><div id="buttonNext">Next <i class="fa fa-chevron-right fa-lg"></i></div>
+</div>
+<div id="pauseScreen">
+  PAUSED
+</div>
+
+  <script defer type="text/javascript">
+    // We want the audience members to see automatic tours. We can assume that they won't be
+    // using many server domains like the presenter might.
+    var autoTour = true;
+
+    $( document ).ready(function() {
+      if(presenter && !window.opener) {
+        alert('This is an audience view designed for interactivity. If you are placing this window on a projector, you should use the Display View instead.');
+      }
+
+      tours['showoff:activity'] = [
+        {
+          element: ".currentSlide .activityToggle",
+          intro: I18n.t('tour.activity.complete')
+        }
+      ];
+
+      tours['showoff:form'] = [
+        {
+          element: ".currentSlide input.save",
+          intro: I18n.t('tour.form.save')
+        }
+      ];
+
+      tours['showoff:menu'] = [
+        {
+          element: "#hamburger",
+          intro: I18n.t('tour.menu.start')
+        },
+        {
+          element: "#navToggle",
+          intro: I18n.t('tour.menu.navigation')
+        },
+        {
+          element: "#fileDownloads",
+          intro: I18n.t('tour.menu.download')
+        },
+        {
+          element: "#paceFaster",
+          intro: I18n.t('tour.menu.pace')
+        },
+        {
+          element: "#questionToggle",
+          intro: I18n.t('tour.menu.questions')
+        },
+        {
+          element: "#feedbackToggle",
+          intro: I18n.t('tour.menu.feedback')
+        }
+      ].filter(function(item) { return (document.querySelector(item['element'])) });
+      // display tips for only the enabled features
+    });
+  </script>
+
+</body>
+</html>
