@@ -27,7 +27,7 @@ GEM
     parslet (2.0.0)
     public_suffix (5.0.1)
     racc (1.8.0)
-    rack (2.2.9)
+    rack (2.2.10)
     rack-contrib (2.5.0)
       rack (< 4)
     rack-protection (2.2.4)
