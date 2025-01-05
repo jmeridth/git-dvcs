@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '3.3.6'
+ruby '3.3.1'
 
 gem "rexml"
 gem "showoff", ">= 0.20.3"
