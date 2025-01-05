@@ -10,5 +10,5 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
-      - uses: haya14busa/action-bumpr@e37b4e5b5bd66d7e93183c3d6edec24c1497b619 # v1
+      - uses: actions/checkout@v4.2.2
+      - uses: haya14busa/action-bumpr@78ab5a104d20896c9c9122c64221b3aecf1a8cbb
