@@ -16,7 +16,7 @@ defaults:
     shell: bash
 jobs:
   build:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4.2.2
@@ -29,21 +29,21 @@ jobs:
           bundler-cache: true
       - name: Setup Pages
         id: pages
-        uses: actions/configure-pages@c5a3e1159e0cbdf0845eb8811bd39e39fc3099c2 # v2
+        uses: actions/configure-pages@v5.0.0
       - run: bundle install
       - name: Build static site
         run: bundle exec showoff static
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@84bb4cd4b733d5c320c9c9cfbc354937524f4d64 # v1
+        uses: actions/upload-pages-artifact@v3.0.1
         with:
           path: ./static
   deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
     needs: build
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@f27bcc15848fdcdcc02f01754eb838e44bcf389b # v1
+        uses: actions/deploy-pages@v4.0.5
