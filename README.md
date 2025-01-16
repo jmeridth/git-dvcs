@@ -1,8 +1,8 @@
-[https://blog.jasonmeridth.com/git-dvcs](blog.jasonmeridth.com/git-dvcs)
+[https://jmeridth.com/git-dvcs](jmeridth.com/git-dvcs)
 
 Presentation about Git (Distribution Version Control System)
 
-By [Jason Meridth](https://blog.jasonmeridth.com)
+By [Jason Meridth](https://jmeridth.com)
 
 Uses [ShowOff](http://github.com/puppetlabs/showoff)
 
