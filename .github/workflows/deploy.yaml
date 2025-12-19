@@ -23,7 +23,7 @@ jobs:
         with:
           submodules: recursive
       - name: Set up Ruby
-        uses: ruby/setup-ruby@211ffaaa5f8dda97e9e8bca4e70d0fbaf2f8c41c
+        uses: ruby/setup-ruby@ed55d55e820a01da7d3e4863a8c51a61d73c3228
         with:
           ruby-version: 3.3.1
           bundler-cache: true
